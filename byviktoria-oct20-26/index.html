@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>By Viktoria - Weekly Google Ads Report | Oct 20-26, 2025</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,112 +14,191 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
             min-height: 100vh;
             padding: 20px;
+            color: #1a1a1a;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .header {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 20px;
+            padding: 50px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+            border-radius: 50%;
+            transform: translate(25%, -25%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
         }
 
         .header h1 {
-            font-size: 2.5em;
-            color: #2d3748;
+            font-size: 3em;
+            color: #ffffff;
             margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .header .subtitle {
             font-size: 1.2em;
-            color: #718096;
+            color: #94a3b8;
             margin-bottom: 20px;
+            font-weight: 400;
         }
 
         .date-range {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
             color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 0.95em;
         }
 
         .executive-summary {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .executive-summary::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .executive-summary-content {
+            position: relative;
+            z-index: 1;
         }
 
         .executive-summary h2 {
             font-size: 1.8em;
             margin-bottom: 20px;
+            font-weight: 600;
         }
 
         .executive-summary ul {
             list-style: none;
-            font-size: 1.1em;
-            line-height: 1.8;
+            font-size: 1.05em;
+            line-height: 1.9;
+        }
+
+        .executive-summary li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 8px;
         }
 
         .executive-summary li:before {
-            content: "✓ ";
+            content: "→";
+            position: absolute;
+            left: 0;
             font-weight: bold;
-            margin-right: 10px;
+            font-size: 1.2em;
         }
 
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
             margin-bottom: 30px;
         }
 
         .metric-card {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+            transform: scaleX(0);
             transition: transform 0.3s ease;
         }
 
         .metric-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            border-color: #3b82f6;
+        }
+
+        .metric-card:hover::before {
+            transform: scaleX(1);
         }
 
         .metric-label {
-            color: #718096;
-            font-size: 0.9em;
+            color: #6b7280;
+            font-size: 0.85em;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            font-weight: 600;
         }
 
         .metric-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #2d3748;
-            margin-bottom: 10px;
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
         }
 
         .metric-change {
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: 600;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .metric-change.positive {
@@ -133,80 +213,114 @@
 
         .chart-container {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 16px;
+            padding: 36px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #e5e7eb;
         }
 
         .chart-container h3 {
-            color: #2d3748;
-            margin-bottom: 20px;
+            color: #0f172a;
+            margin-bottom: 24px;
             font-size: 1.5em;
+            font-weight: 600;
         }
 
         .insights-section {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 16px;
+            padding: 36px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #e5e7eb;
         }
 
         .insights-section h3 {
-            color: #2d3748;
+            color: #0f172a;
             font-size: 1.5em;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            font-weight: 600;
         }
 
         .insight-item {
-            background: #f7fafc;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 5px;
+            background: #f9fafb;
+            border-left: 3px solid #3b82f6;
+            padding: 24px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .insight-item:hover {
+            background: #f3f4f6;
+            border-left-color: #8b5cf6;
+            transform: translateX(4px);
         }
 
         .insight-item h4 {
-            color: #2d3748;
-            margin-bottom: 10px;
-            font-size: 1.2em;
+            color: #0f172a;
+            margin-bottom: 12px;
+            font-size: 1.15em;
+            font-weight: 600;
         }
 
         .insight-item p {
-            color: #4a5568;
-            line-height: 1.6;
+            color: #4b5563;
+            line-height: 1.7;
+            font-size: 0.95em;
         }
 
         .campaign-table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             margin-top: 20px;
         }
 
+        .campaign-table thead {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
         .campaign-table th {
-            background: #667eea;
             color: white;
-            padding: 15px;
+            padding: 16px;
             text-align: left;
             font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .campaign-table th:first-child {
+            border-top-left-radius: 12px;
+        }
+
+        .campaign-table th:last-child {
+            border-top-right-radius: 12px;
         }
 
         .campaign-table td {
-            padding: 15px;
-            border-bottom: 1px solid #e2e8f0;
+            padding: 16px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.95em;
         }
 
-        .campaign-table tr:hover {
-            background: #f7fafc;
+        .campaign-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        .campaign-table tbody tr:hover {
+            background: #f9fafb;
         }
 
         .status-badge {
             display: inline-block;
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.85em;
+            font-size: 0.8em;
             font-weight: 600;
+            letter-spacing: 0.3px;
         }
 
         .status-eligible {
@@ -222,30 +336,51 @@
         .recommendations {
             background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
             color: white;
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 40px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 60px rgba(245, 158, 11, 0.25);
         }
 
         .recommendations h3 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
+            font-size: 1.8em;
+            margin-bottom: 24px;
+            font-weight: 600;
         }
 
         .recommendations ol {
-            font-size: 1.1em;
-            line-height: 1.8;
-            padding-left: 20px;
+            font-size: 1.05em;
+            line-height: 1.9;
+            padding-left: 24px;
         }
 
         .recommendations li {
-            margin-bottom: 10px;
+            margin-bottom: 14px;
+        }
+
+        .recommendations strong {
+            font-weight: 700;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #e5e7eb;
+        }
+
+        .footer p {
+            color: #6b7280;
+            font-size: 0.9em;
+            line-height: 1.6;
         }
 
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
 
             .metrics-grid {
@@ -253,28 +388,66 @@
             }
 
             .metric-value {
-                font-size: 2em;
+                font-size: 2.2em;
             }
+
+            .header, .executive-summary, .recommendations {
+                padding: 30px;
+            }
+
+            .chart-container, .insights-section {
+                padding: 24px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎨 By Viktoria</h1>
-            <div class="subtitle">Google Ads Performance Report</div>
-            <div class="date-range">📅 October 20-26, 2025 vs October 13-19, 2025</div>
+            <div class="header-content">
+                <h1>By Viktoria</h1>
+                <div class="subtitle">Google Ads Performance Report</div>
+                <div class="date-range">
+                    <span>📊</span>
+                    <span>October 20-26, 2025 vs October 13-19, 2025</span>
+                </div>
+            </div>
         </div>
 
         <div class="executive-summary">
-            <h2>🎯 Executive Summary</h2>
-            <ul>
-                <li><strong>Outstanding Performance:</strong> 575 conversions this week vs 1 last week - a 57,451% increase</li>
-                <li><strong>Cost Efficiency Breakthrough:</strong> Cost per conversion dropped 99.6% from $451.05 to $1.76</li>
-                <li><strong>Conversion Rate Soared:</strong> From 0.01% to 14.46% - Performance Max is delivering</li>
-                <li><strong>Budget Optimization Needed:</strong> PMax campaign limited by $50/day budget while performing excellently</li>
-                <li><strong>New Campaign Launched:</strong> Demand Gen campaign ($100/day) in learning phase with $622.97 spent</li>
-            </ul>
+            <div class="executive-summary-content">
+                <h2>Executive Summary</h2>
+                <ul>
+                    <li><strong>Outstanding Performance:</strong> 575 conversions this week vs 1 last week - a 57,451% increase</li>
+                    <li><strong>Cost Efficiency Breakthrough:</strong> Cost per conversion dropped 99.6% from $451.05 to $1.76</li>
+                    <li><strong>Conversion Rate Soared:</strong> From 0.01% to 14.46% - Performance Max is delivering</li>
+                    <li><strong>Budget Optimization Needed:</strong> PMax campaign limited by $50/day budget while performing excellently</li>
+                    <li><strong>New Campaign Launched:</strong> Demand Gen campaign ($100/day) in learning phase with $622.97 spent</li>
+                </ul>
+            </div>
         </div>
 
         <div class="metrics-grid">
@@ -316,17 +489,17 @@
         </div>
 
         <div class="chart-container">
-            <h3>📊 Campaign Performance Comparison</h3>
+            <h3>Campaign Performance Comparison</h3>
             <canvas id="campaignChart"></canvas>
         </div>
 
         <div class="chart-container">
-            <h3>💰 Spend vs Conversions Trend</h3>
+            <h3>Spend vs Conversions Trend</h3>
             <canvas id="trendChart"></canvas>
         </div>
 
         <div class="insights-section">
-            <h3>📈 Campaign Breakdown</h3>
+            <h3>Campaign Breakdown</h3>
             <table class="campaign-table">
                 <thead>
                     <tr>
@@ -366,7 +539,7 @@
         </div>
 
         <div class="insights-section">
-            <h3>💡 Key Insights</h3>
+            <h3>Key Insights</h3>
 
             <div class="insight-item">
                 <h4>🚀 Performance Max Campaign is the Star Performer</h4>
@@ -395,7 +568,7 @@
         </div>
 
         <div class="recommendations">
-            <h3>🎯 Recommended Actions</h3>
+            <h3>Recommended Actions</h3>
             <ol>
                 <li><strong>Increase PMax Budget Immediately:</strong> Raise OnlineSales-PMax daily budget from $50 to $75-100 to capture more of the high-converting traffic.</li>
                 <li><strong>Monitor Demand Gen Campaign:</strong> Give it 1-2 more weeks to exit learning phase. Target: 50+ conversions before making optimization decisions.</li>
@@ -407,7 +580,7 @@
         </div>
 
         <div class="insights-section">
-            <h3>📅 Next Week Priorities</h3>
+            <h3>Next Week Priorities</h3>
             <div class="insight-item">
                 <h4>Week of October 27 - November 2</h4>
                 <p>
@@ -422,16 +595,21 @@
             </div>
         </div>
 
-        <div class="header" style="text-align: center; margin-top: 40px;">
-            <p style="color: #718096; font-size: 0.9em;">
+        <div class="footer">
+            <p>
                 Report Generated: October 28, 2025<br>
-                Managed by: Robert Hebert Media<br>
+                Managed by: <strong>Robert Hebert Media</strong><br>
                 Account Manager: Brandon Lincoln Hendricks
             </p>
         </div>
     </div>
 
     <script>
+        // Modern chart configuration
+        Chart.defaults.font.family = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif";
+        Chart.defaults.font.size = 13;
+        Chart.defaults.color = '#6b7280';
+
         // Campaign Performance Chart
         const campaignCtx = document.getElementById('campaignChart').getContext('2d');
         new Chart(campaignCtx, {
@@ -442,36 +620,67 @@
                     {
                         label: 'Spend ($)',
                         data: [387.34, 622.97],
-                        backgroundColor: 'rgba(102, 126, 234, 0.8)',
-                        borderColor: 'rgba(102, 126, 234, 1)',
-                        borderWidth: 2
+                        backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 0,
+                        borderRadius: 8,
                     },
                     {
                         label: 'Conversions',
                         data: [575.52, 0],
                         backgroundColor: 'rgba(16, 185, 129, 0.8)',
                         borderColor: 'rgba(16, 185, 129, 1)',
-                        borderWidth: 2
+                        borderWidth: 0,
+                        borderRadius: 8,
                     }
                 ]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: true,
                 scales: {
                     y: {
                         beginAtZero: true,
+                        grid: {
+                            color: '#f3f4f6',
+                            drawBorder: false,
+                        },
                         ticks: {
                             callback: function(value) {
                                 return value.toLocaleString();
                             }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false,
+                            drawBorder: false,
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         position: 'top',
+                        align: 'end',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 15,
+                            font: {
+                                weight: '600'
+                            }
+                        }
                     },
                     tooltip: {
+                        backgroundColor: '#0f172a',
+                        padding: 12,
+                        titleFont: {
+                            size: 14,
+                            weight: '600'
+                        },
+                        bodyFont: {
+                            size: 13
+                        },
+                        cornerRadius: 8,
                         callbacks: {
                             label: function(context) {
                                 let label = context.dataset.label || '';
@@ -501,40 +710,77 @@
                     {
                         label: 'Total Spend ($)',
                         data: [451.05, 1010.31],
-                        backgroundColor: 'rgba(102, 126, 234, 0.2)',
-                        borderColor: 'rgba(102, 126, 234, 1)',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
                         borderWidth: 3,
                         fill: true,
-                        tension: 0.4
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        pointBackgroundColor: '#ffffff',
+                        pointBorderWidth: 3,
                     },
                     {
                         label: 'Total Conversions',
                         data: [1, 575.52],
-                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
                         borderColor: 'rgba(16, 185, 129, 1)',
                         borderWidth: 3,
                         fill: true,
-                        tension: 0.4
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        pointBackgroundColor: '#ffffff',
+                        pointBorderWidth: 3,
                     }
                 ]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: true,
                 scales: {
                     y: {
                         beginAtZero: true,
+                        grid: {
+                            color: '#f3f4f6',
+                            drawBorder: false,
+                        },
                         ticks: {
                             callback: function(value) {
                                 return value.toLocaleString();
                             }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false,
+                            drawBorder: false,
                         }
                     }
                 },
                 plugins: {
                     legend: {
                         position: 'top',
+                        align: 'end',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 15,
+                            font: {
+                                weight: '600'
+                            }
+                        }
                     },
                     tooltip: {
+                        backgroundColor: '#0f172a',
+                        padding: 12,
+                        titleFont: {
+                            size: 14,
+                            weight: '600'
+                        },
+                        bodyFont: {
+                            size: 13
+                        },
+                        cornerRadius: 8,
                         callbacks: {
                             label: function(context) {
                                 let label = context.dataset.label || '';
