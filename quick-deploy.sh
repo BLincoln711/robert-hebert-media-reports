@@ -19,7 +19,7 @@ git commit -m "Add $CLIENT_NAME report for $DATE_RANGE"
 git push
 
 echo "✅ Report deployed!"
-echo "🔗 URL: https://reports-roberthebertmedia.com/$CLIENT_DIR/"
+echo "🔗 URL: https://reports.roberthebertmedia.com/$CLIENT_DIR/"
 echo ""
 echo "📝 Don't forget to update index.html with:"
 echo "<div class=\"report-item\">"

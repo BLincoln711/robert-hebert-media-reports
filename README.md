@@ -1,6 +1,6 @@
 # Robert Hebert Media - Client Reports Platform
 
-Automated weekly performance reports hosted at **https://reports-roberthebertmedia.com**
+Automated weekly performance reports hosted at **https://reports.roberthebertmedia.com**
 
 ## 🚀 Quick Start - Generate a New Weekly Report
 
@@ -30,7 +30,7 @@ Edit `index.html` to add the new report to the main landing page.
 
 ### Step 4: Share
 
-Send client: `https://reports-roberthebertmedia.com/clientname-oct20-26/`
+Send client: `https://reports.roberthebertmedia.com/clientname-oct20-26/`
 
 ## 📁 Current Reports
 
@@ -45,7 +45,7 @@ Send client: `https://reports-roberthebertmedia.com/clientname-oct20-26/`
 ## 🔧 Technical Setup
 
 - **Hosting**: GitHub Pages
-- **Domain**: reports-roberthebertmedia.com
+- **Domain**: reports.roberthebertmedia.com
 - **SSL**: Auto-provisioned by GitHub (Let's Encrypt)
 - **Repository**: Will be created at https://github.com/BLincoln711/robert-hebert-media-reports
 
@@ -95,5 +95,5 @@ Visit: https://github.com/BLincoln711/robert-hebert-media-reports/settings/pages
 
 ### Verify DNS
 ```bash
-nslookup reports-roberthebertmedia.com
+nslookup reports.roberthebertmedia.com
 ```

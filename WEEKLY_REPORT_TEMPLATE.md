@@ -44,7 +44,7 @@ Save to: /Users/brandonlhendricks/claudecode/robert-hebert-media-reports/[client
    ```
 
 4. **Share URL** with client:
-   - `https://reports-roberthebertmedia.com/clientname-daterange/`
+   - `https://reports.roberthebertmedia.com/clientname-daterange/`
 
 ## Report Customization Notes
 
@@ -107,7 +107,7 @@ Common data sources for reports:
 - Changes go live within 1-2 minutes
 
 **Client can't access URL?**
-- Verify DNS propagation: `nslookup reports-roberthebertmedia.com`
+- Verify DNS propagation: `nslookup reports.roberthebertmedia.com`
 - Check GitHub Pages settings
 - Try incognito/private browsing
 - Clear browser cache
