@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Reports - Robert Hebert Media</title>
+    <title>Blair Realty Group - Performance Reports | Blok.co</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,38 +13,86 @@
             background-color: #f5f5f5;
         }
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: white;
             padding: 40px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-bottom: 40px;
             text-align: center;
+            position: relative;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,212,255,0.1) 0%, rgba(0,212,255,0.05) 100%);
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+            border-radius: 0 12px 12px 0;
         }
         h1 {
             margin: 0 0 10px 0;
-            font-size: 2.5em;
+            font-size: 2.2em;
+            position: relative;
+            z-index: 1;
         }
         .subtitle {
             opacity: 0.9;
-            font-size: 1.2em;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+        }
+        .blok-badge {
+            display: inline-block;
+            background: rgba(0,212,255,0.2);
+            border: 1px solid rgba(0,212,255,0.4);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 15px;
+            color: #00d4ff;
+            position: relative;
+            z-index: 1;
         }
         .reports-container {
             background: white;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .section-title {
+            margin-top: 0;
+            color: #1a1a2e;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, #00d4ff 0%, #0f3460 100%);
+            border-radius: 2px;
         }
         .report-item {
             padding: 20px;
             margin-bottom: 15px;
-            border-left: 4px solid #667eea;
-            background: #f8f9fa;
-            border-radius: 5px;
+            border-left: 4px solid #00d4ff;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 0 8px 8px 0;
             transition: all 0.3s ease;
         }
         .report-item:hover {
-            background: #e9ecef;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
             transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(0,212,255,0.2);
+        }
+        .report-item:last-child {
+            margin-bottom: 0;
         }
         .report-item a {
             text-decoration: none;
@@ -52,47 +100,100 @@
             display: block;
         }
         .report-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #1a1a2e;
             margin-bottom: 5px;
         }
         .report-date {
             color: #666;
             font-size: 0.95em;
         }
+        .badge-new {
+            display: inline-block;
+            background: #d1fae5;
+            color: #065f46;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+        .footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Client Reports</h1>
-        <p class="subtitle">Performance Analytics & Insights</p>
+        <h1>Blair Realty Group</h1>
+        <p class="subtitle">Weekly Performance Reports</p>
+        <div class="blok-badge">Powered by Blok.co</div>
     </div>
 
     <div class="reports-container">
-        <h2 style="margin-top: 0; color: #333;">Available Reports</h2>
+        <h2 class="section-title">Available Reports</h2>
 
-        <!-- Reports will be added here -->
         <div class="report-item">
-            <a href="/jftx-sep-dec-2025/">
-                <div class="report-title">Joe from Texas (JFTX) - Google Ads Performance Report</div>
-                <div class="report-date">September 1 - December 10, 2025 | Display Campaign - Nationwide</div>
+            <a href="/blairrealtygroup-dec1-7/">
+                <div class="report-title">Weekly Performance Report <span class="badge-new">NEW</span></div>
+                <div class="report-date">Week of December 1-7, 2025</div>
             </a>
         </div>
 
         <div class="report-item">
-            <a href="/byviktoria-nov-2025/">
-                <div class="report-title">By Viktorija - Comprehensive Performance Report</div>
-                <div class="report-date">October 1 - November 14, 2025</div>
+            <a href="/blairrealtygroup-nov24-30/">
+                <div class="report-title">Weekly Performance Report</div>
+                <div class="report-date">Week of November 24-30, 2025</div>
             </a>
         </div>
 
         <div class="report-item">
-            <a href="/byviktoria-oct20-26/">
-                <div class="report-title">By Viktoria</div>
+            <a href="/blairrealtygroup-nov17-23/">
+                <div class="report-title">Weekly Performance Report</div>
+                <div class="report-date">Week of November 17-23, 2025</div>
+            </a>
+        </div>
+
+        <div class="report-item">
+            <a href="/blairrealtygroup-nov10-16/">
+                <div class="report-title">Weekly Performance Report</div>
+                <div class="report-date">Week of November 10-16, 2025</div>
+            </a>
+        </div>
+
+        <div class="report-item">
+            <a href="/blairrealtygroup-nov3-9/">
+                <div class="report-title">Weekly Performance Report</div>
+                <div class="report-date">Week of November 3-9, 2025</div>
+            </a>
+        </div>
+
+        <div class="report-item">
+            <a href="/blairrealtygroup-oct20-26/">
+                <div class="report-title">Weekly Performance Report</div>
                 <div class="report-date">Week of October 20-26, 2025</div>
             </a>
         </div>
+
+        <div class="report-item">
+            <a href="/blairrealtygroup-oct13-19/">
+                <div class="report-title">Weekly Performance Report</div>
+                <div class="report-date">Week of October 13-19, 2025</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Reports generated by <a href="https://blok.co" target="_blank">Blok.co</a></p>
     </div>
 </body>
 </html>
