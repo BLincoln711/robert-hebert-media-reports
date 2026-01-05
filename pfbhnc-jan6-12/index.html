@@ -11,6 +11,8 @@
         :root {
             --primary: #0066CC;
             --success: #059669;
+            --warning: #D97706;
+            --danger: #DC2626;
             --gray-50: #F9FAFB;
             --gray-100: #F3F4F6;
             --gray-200: #E5E7EB;
@@ -49,7 +51,9 @@
         .kpi-label { font-size: 12px; font-weight: 500; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
         .kpi-value { font-size: 36px; font-weight: 700; color: var(--gray-900); line-height: 1; margin-bottom: 8px; }
         .kpi-card.highlight .kpi-value { color: var(--primary); }
-        .kpi-change { font-size: 13px; font-weight: 500; }
+        .kpi-change { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 4px; }
+        .kpi-change.positive { color: var(--success); }
+        .kpi-change.negative { color: var(--danger); }
         .kpi-change.neutral { color: var(--gray-400); }
         .kpi-subtitle { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
         .performance-badge { position: absolute; top: 16px; right: 16px; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -66,6 +70,8 @@
         .data-table tbody tr:last-child td { border-bottom: none; }
         .metric-name { font-weight: 500; color: var(--gray-800); }
         .metric-value { font-weight: 600; color: var(--gray-900); }
+        .change-positive { color: var(--success); font-weight: 500; }
+        .change-negative { color: var(--danger); font-weight: 500; }
         .insights-section { margin-bottom: 48px; }
         .insight-card { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 24px; margin-bottom: 16px; }
         .insight-card:last-child { margin-bottom: 0; }
@@ -73,6 +79,7 @@
         .insight-icon { width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
         .insight-icon.success { background: #D1FAE5; }
         .insight-icon.info { background: #DBEAFE; }
+        .insight-icon.warning { background: #FEF3C7; }
         .insight-title { font-size: 14px; font-weight: 600; color: var(--gray-800); }
         .insight-text { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
         .report-footer { border-top: 1px solid var(--gray-200); padding-top: 24px; margin-top: 48px; display: flex; justify-content: space-between; align-items: center; }
@@ -87,7 +94,7 @@
         <header class="report-header">
             <div class="header-top">
                 <div class="brand">Robert Hebert Media</div>
-                <div class="report-date">Report Generated: January 5, 2026<br>Confidential</div>
+                <div class="report-date">Report Generated: January 13, 2026<br>Confidential</div>
             </div>
             <h1 class="client-name">PFBHNC</h1>
             <p class="report-title">Weekly Google Ads Performance Report</p>
@@ -97,9 +104,10 @@
         <div class="executive-summary">
             <div class="summary-title">Executive Summary</div>
             <p class="summary-text">
-                This week delivered <strong>exceptional engagement</strong> with <strong>6,600 clicks</strong>
-                from <strong>43,930 impressions</strong>, achieving an outstanding click-through rate of <strong>15.02%</strong>.
-                Total investment of <strong>$2,935.07</strong> with an average CPC of <strong>$0.44</strong>.
+                <strong>Strong efficiency gains this week.</strong> CTR improved <strong>+25%</strong> to an exceptional
+                <strong>15.02%</strong>, while CPC dropped <strong>20%</strong> to just <strong>$0.44</strong>.
+                Total investment of <strong>$2,935.07</strong> (down 19% from last week) delivered <strong>6,600 clicks</strong>
+                with significantly improved cost efficiency.
             </p>
         </div>
 
@@ -109,30 +117,30 @@
                 <div class="kpi-card highlight">
                     <div class="kpi-label">Total Spend</div>
                     <div class="kpi-value">$2,935</div>
-                    <div class="kpi-change neutral">Weekly investment</div>
+                    <div class="kpi-change positive">-18.63% cost savings</div>
                 </div>
                 <div class="kpi-card highlight">
                     <span class="performance-badge excellent">Excellent</span>
                     <div class="kpi-label">Click-Through Rate</div>
                     <div class="kpi-value">15.02%</div>
-                    <div class="kpi-subtitle">Industry avg: 2-3%</div>
+                    <div class="kpi-change positive">+24.75% vs last week</div>
                 </div>
                 <div class="kpi-card">
-                    <span class="performance-badge good">Good</span>
+                    <span class="performance-badge excellent">Improved</span>
                     <div class="kpi-label">Avg. Cost Per Click</div>
                     <div class="kpi-value">$0.44</div>
-                    <div class="kpi-subtitle">Competitive CPC</div>
+                    <div class="kpi-change positive">-20% more efficient</div>
                 </div>
                 <div class="kpi-card">
-                    <span class="performance-badge excellent">Strong</span>
+                    <span class="performance-badge good">Stable</span>
                     <div class="kpi-label">Total Clicks</div>
                     <div class="kpi-value">6,600</div>
-                    <div class="kpi-subtitle">High engagement</div>
+                    <div class="kpi-change positive">+0.21% vs last week</div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-label">Impressions</div>
                     <div class="kpi-value">43,930</div>
-                    <div class="kpi-subtitle">Solid reach</div>
+                    <div class="kpi-change negative">-19.68% vs last week</div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-label">Impression Share</div>
@@ -149,11 +157,11 @@
                     <tr><th>Metric</th><th>This Week</th><th>Previous Week</th><th>Change</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td class="metric-name">Total Ad Spend</td><td class="metric-value">$2,935.07</td><td>—</td><td>—</td></tr>
-                    <tr><td class="metric-name">Impressions</td><td class="metric-value">43,930</td><td>—</td><td>—</td></tr>
-                    <tr><td class="metric-name">Clicks</td><td class="metric-value">6,600</td><td>—</td><td>—</td></tr>
-                    <tr><td class="metric-name">Click-Through Rate (CTR)</td><td class="metric-value">15.02%</td><td>—</td><td>—</td></tr>
-                    <tr><td class="metric-name">Average CPC</td><td class="metric-value">$0.44</td><td>—</td><td>—</td></tr>
+                    <tr><td class="metric-name">Total Ad Spend</td><td class="metric-value">$2,935.07</td><td>$3,607.04</td><td class="change-positive">-18.63%</td></tr>
+                    <tr><td class="metric-name">Impressions</td><td class="metric-value">43,930</td><td>54,693</td><td class="change-negative">-19.68%</td></tr>
+                    <tr><td class="metric-name">Clicks</td><td class="metric-value">6,600</td><td>6,586</td><td class="change-positive">+0.21%</td></tr>
+                    <tr><td class="metric-name">Click-Through Rate (CTR)</td><td class="metric-value">15.02%</td><td>12.04%</td><td class="change-positive">+24.75%</td></tr>
+                    <tr><td class="metric-name">Average CPC</td><td class="metric-value">$0.44</td><td>$0.55</td><td class="change-positive">-20.00%</td></tr>
                 </tbody>
             </table>
         </section>
@@ -162,34 +170,35 @@
             <div class="section-header">Key Insights & Recommendations</div>
             <div class="insight-card">
                 <div class="insight-header">
-                    <div class="insight-icon success">✓</div>
-                    <div class="insight-title">Outstanding Click-Through Rate</div>
+                    <div class="insight-icon success">&#10003;</div>
+                    <div class="insight-title">Outstanding CTR Performance</div>
                 </div>
                 <p class="insight-text">
-                    A 15.02% CTR is exceptional—approximately 5-7x the industry average. This indicates highly relevant
-                    ad copy, strong audience targeting, and compelling messaging that resonates with the target market.
+                    A 15.02% CTR is exceptional—approximately 5-7x the industry average. The 25% improvement
+                    week-over-week indicates the ad copy and targeting optimizations are resonating strongly
+                    with the audience.
                 </p>
             </div>
             <div class="insight-card">
                 <div class="insight-header">
-                    <div class="insight-icon success">✓</div>
-                    <div class="insight-title">Efficient Traffic Acquisition</div>
+                    <div class="insight-icon success">&#10003;</div>
+                    <div class="insight-title">Improved Cost Efficiency</div>
                 </div>
                 <p class="insight-text">
-                    At $0.44 per click, the campaign is generating quality traffic at a competitive rate.
-                    The combination of high CTR and reasonable CPC indicates strong ad relevance scores.
+                    CPC dropped 20% from $0.55 to $0.44 while maintaining click volume. This means the campaign
+                    is delivering the same traffic at significantly lower cost—excellent optimization results.
                 </p>
             </div>
             <div class="insight-card">
                 <div class="insight-header">
-                    <div class="insight-icon info">→</div>
+                    <div class="insight-icon info">&rarr;</div>
                     <div class="insight-title">Recommendations</div>
                 </div>
                 <p class="insight-text">
-                    1) Analyze top-performing ad variations to replicate success<br>
-                    2) Consider expanding budget to capture additional market share<br>
-                    3) Test similar audiences to scale reach<br>
-                    4) Monitor quality scores to maintain efficiency
+                    1) Reinvest cost savings to expand reach and capture additional market share<br>
+                    2) Analyze top-performing ad variations to replicate success across campaigns<br>
+                    3) Test similar audiences to scale while maintaining efficiency<br>
+                    4) Monitor impression share to identify growth opportunities
                 </p>
             </div>
         </section>
