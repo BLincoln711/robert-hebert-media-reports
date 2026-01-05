@@ -1,0 +1,35 @@
+{
+  "clients": [
+    {
+      "name": "JFTx2025",
+      "slug": "jftx2025",
+      "customer_id": "9175974799",
+      "email": "robert@roberthebertmedia.com",
+      "bcc": ["brandon@hendricks.ai"],
+      "active": true
+    },
+    {
+      "name": "PFBHNC",
+      "slug": "pfbhnc",
+      "customer_id": "3430276201",
+      "email": "robert@roberthebertmedia.com",
+      "bcc": ["brandon@hendricks.ai"],
+      "active": true
+    },
+    {
+      "name": "ReOptica",
+      "slug": "reoptica",
+      "customer_id": "3263366442",
+      "email": "robert@roberthebertmedia.com",
+      "bcc": ["brandon@hendricks.ai"],
+      "active": true
+    }
+  ],
+  "settings": {
+    "timezone": "America/Chicago",
+    "report_day": "monday",
+    "report_hour": 8,
+    "sender_email": "reports@roberthebertmedia.com",
+    "sender_name": "Robert Hebert Media Reports"
+  }
+}

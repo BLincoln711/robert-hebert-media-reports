@@ -1,0 +1,13 @@
+# Google Cloud
+google-cloud-secret-manager>=2.16.0
+google-cloud-functions>=1.13.0
+functions-framework>=3.0.0
+
+# Google Ads API
+google-ads>=21.0.0
+
+# Email
+sendgrid>=6.10.0
+
+# Utilities
+python-dateutil>=2.8.2

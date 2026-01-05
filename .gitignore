@@ -2,3 +2,6 @@
 .vercel
 node_modules/
 *.log
+.claude/
+google-ads.yaml
+get_refresh_token.py
