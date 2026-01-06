@@ -36,109 +36,25 @@
         .header-meta { font-size: 12px; color: var(--gray-500); text-align: right; }
         .page-title { font-size: 32px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
         .page-subtitle { font-size: 18px; font-weight: 400; color: var(--gray-600); }
-
         .client-section { margin-bottom: 32px; }
-        .section-header {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--gray-500);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--gray-200);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .client-badge {
-            background: var(--primary);
-            color: white;
-            padding: 3px 10px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .report-card {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: 8px;
-            padding: 20px 24px;
-            margin-bottom: 12px;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-        .report-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
-            transform: translateY(-2px);
-        }
+        .section-header { font-size: 11px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; gap: 12px; }
+        .client-badge { background: var(--primary); color: white; padding: 3px 10px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .report-card { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 20px 24px; margin-bottom: 12px; transition: all 0.2s ease; position: relative; }
+        .report-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1); transform: translateY(-2px); }
         .report-card:last-child { margin-bottom: 0; }
-        .report-card a {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .report-card a { text-decoration: none; color: inherit; display: flex; justify-content: space-between; align-items: center; }
         .report-info { flex: 1; }
-        .report-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .report-date {
-            font-size: 13px;
-            color: var(--gray-500);
-        }
-        .badge-new {
-            display: inline-block;
-            background: #D1FAE5;
-            color: #065F46;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .arrow-icon {
-            color: var(--gray-400);
-            font-size: 18px;
-            transition: transform 0.2s ease, color 0.2s ease;
-        }
-        .report-card:hover .arrow-icon {
-            color: var(--primary);
-            transform: translateX(4px);
-        }
-
-        .page-footer {
-            border-top: 1px solid var(--gray-200);
-            padding-top: 24px;
-            margin-top: 48px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .report-title { font-size: 15px; font-weight: 600; color: var(--gray-900); margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+        .report-date { font-size: 13px; color: var(--gray-500); }
+        .badge-new { display: inline-block; background: #D1FAE5; color: #065F46; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .arrow-icon { color: var(--gray-400); font-size: 18px; transition: transform 0.2s ease, color 0.2s ease; }
+        .report-card:hover .arrow-icon { color: var(--primary); transform: translateX(4px); }
+        .page-footer { border-top: 1px solid var(--gray-200); padding-top: 24px; margin-top: 48px; display: flex; justify-content: space-between; align-items: center; }
         .footer-brand { font-size: 12px; color: var(--gray-500); }
         .footer-brand a { color: var(--primary); text-decoration: none; font-weight: 500; }
         .footer-brand a:hover { text-decoration: underline; }
         .footer-meta { font-size: 11px; color: var(--gray-400); }
-
-        @media (max-width: 768px) {
-            .page-container { padding: 20px; }
-            .header-top { flex-direction: column; gap: 8px; }
-            .page-title { font-size: 24px; }
-            .report-card a { flex-direction: column; align-items: flex-start; gap: 8px; }
-            .arrow-icon { display: none; }
-        }
+        @media (max-width: 768px) { .page-container { padding: 20px; } .header-top { flex-direction: column; gap: 8px; } .page-title { font-size: 24px; } .report-card a { flex-direction: column; align-items: flex-start; gap: 8px; } .arrow-icon { display: none; } }
     </style>
 </head>
 <body>
@@ -152,6 +68,7 @@
             <p class="page-subtitle">Weekly Google Ads Analytics</p>
         </header>
 
+        
         <!-- JFTx2025 -->
         <section class="client-section">
             <div class="section-header">
@@ -159,19 +76,18 @@
                 <span class="client-badge">Google Ads</span>
             </div>
             <div class="report-card">
-                <a href="/jftx2025-dec29-jan4/">
+                <a href="/jftx2025-dec28-jan3/">
                     <div class="report-info">
                         <div class="report-title">
                             Weekly Performance Report
                             <span class="badge-new">New</span>
                         </div>
-                        <div class="report-date">December 29, 2025 - January 4, 2026</div>
+                        <div class="report-date">December 28, 2025 ? January 3, 2026</div>
                     </div>
                     <span class="arrow-icon">&rarr;</span>
                 </a>
             </div>
         </section>
-
         <!-- PFBHNC -->
         <section class="client-section">
             <div class="section-header">
@@ -179,19 +95,18 @@
                 <span class="client-badge">Google Ads</span>
             </div>
             <div class="report-card">
-                <a href="/pfbhnc-dec29-jan4/">
+                <a href="/pfbhnc-dec28-jan3/">
                     <div class="report-info">
                         <div class="report-title">
                             Weekly Performance Report
                             <span class="badge-new">New</span>
                         </div>
-                        <div class="report-date">December 29, 2025 - January 4, 2026</div>
+                        <div class="report-date">December 28, 2025 ? January 3, 2026</div>
                     </div>
                     <span class="arrow-icon">&rarr;</span>
                 </a>
             </div>
         </section>
-
         <!-- ReOptica -->
         <section class="client-section">
             <div class="section-header">
@@ -199,13 +114,13 @@
                 <span class="client-badge">Google Ads</span>
             </div>
             <div class="report-card">
-                <a href="/reoptica-dec29-jan4/">
+                <a href="/reoptica-dec28-jan3/">
                     <div class="report-info">
                         <div class="report-title">
                             Weekly Performance Report
                             <span class="badge-new">New</span>
                         </div>
-                        <div class="report-date">December 29, 2025 - January 4, 2026</div>
+                        <div class="report-date">December 28, 2025 ? January 3, 2026</div>
                     </div>
                     <span class="arrow-icon">&rarr;</span>
                 </a>
