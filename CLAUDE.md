@@ -38,12 +38,48 @@ robert-hebert-media-reports/
 
 ---
 
-## Current Clients
+## Client History & Directory
 
-### Blair Realty Group
-- **URL Pattern:** `/blairrealtygroup-[dates]/`
-- **Reports:** Weekly performance reports
-- **Data Sources:** GA4, Search Console
+### JFTx2025
+- **Status:** Active
+- **Service:** Google Ads Management
+- **Started:** December 2025
+- **URL Pattern:** `/jftx2025-[dates]/`
+- **Reports Generated:**
+  - `jftx2025-dec28-jan3` (Dec 28, 2025 – Jan 3, 2026)
+  - `jftx2025-dec29-jan4` (Dec 29, 2025 – Jan 4, 2026)
+- **Notes:** Weekly Google Ads performance reports
+
+### PFBHNC
+- **Status:** Active
+- **Service:** Google Ads Management
+- **Started:** December 2025
+- **URL Pattern:** `/pfbhnc-[dates]/`
+- **Reports Generated:**
+  - `pfbhnc-dec28-jan3` (Dec 28, 2025 – Jan 3, 2026)
+  - `pfbhnc-dec29-jan4` (Dec 29, 2025 – Jan 4, 2026)
+- **Notes:** Weekly Google Ads performance reports
+
+### ReOptica
+- **Status:** Active
+- **Service:** Google Ads Management
+- **Started:** December 2025
+- **URL Pattern:** `/reoptica-[dates]/`
+- **Reports Generated:**
+  - `reoptica-dec28-jan3` (Dec 28, 2025 – Jan 3, 2026)
+  - `reoptica-dec29-jan4` (Dec 29, 2025 – Jan 4, 2026)
+- **Notes:** Weekly Google Ads performance reports
+
+---
+
+## Client Onboarding Checklist
+
+When adding a new client:
+- [ ] Create folder naming convention: `clientname-monthDD-DD`
+- [ ] Add client section to `index.html`
+- [ ] Document client in this CLAUDE.md file
+- [ ] Confirm data source access (GA4, Google Ads, etc.)
+- [ ] Set up weekly report schedule
 
 ---
 
