@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads PPC Forecast | Empire Properties of Louisiana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary: #0f172a;
+            --accent: #10b981;
+            --accent-amber: #f59e0b;
+            --accent-red: #ef4444;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            --gradient-3: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--secondary) 0%, #1e3a5f 100%);
+            color: white;
+            padding: 60px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .header .subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            max-width: 600px;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .meta-value {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main {
+            margin-top: 40px;
+            padding-bottom: 60px;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .card-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .card-header p {
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        .card-body {
+            padding: 28px;
+        }
+
+        /* Executive Summary */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .summary-card {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--gray-100);
+            transition: all 0.2s ease;
+        }
+
+        .summary-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .summary-card.highlight {
+            background: var(--gradient-2);
+            border: none;
+            color: white;
+        }
+
+        .summary-card.highlight .summary-label {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .summary-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray-500);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .summary-value {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .summary-change {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 8px;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .summary-change.positive {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+        }
+
+        /* Forecast Table */
+        .forecast-table-wrapper {
+            overflow-x: auto;
+            margin: 0 -28px;
+            padding: 0 28px;
+        }
+
+        .forecast-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .forecast-table th {
+            text-align: left;
+            padding: 14px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray-500);
+            background: var(--gray-50);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .forecast-table td {
+            padding: 20px 16px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--gray-100);
+            vertical-align: middle;
+        }
+
+        .forecast-table tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        .forecast-table tbody tr:hover {
+            background: var(--gray-50);
+        }
+
+        .forecast-table tbody tr.recommended {
+            background: linear-gradient(90deg, rgba(37, 99, 235, 0.05) 0%, transparent 100%);
+        }
+
+        .forecast-table tbody tr.recommended td:first-child {
+            border-left: 3px solid var(--primary);
+        }
+
+        .tier-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .tier-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .tier-starter .tier-icon { background: var(--gray-100); }
+        .tier-growth .tier-icon { background: rgba(37, 99, 235, 0.1); color: var(--primary); }
+        .tier-scale .tier-icon { background: rgba(124, 58, 237, 0.1); color: #7c3aed; }
+        .tier-aggressive .tier-icon { background: rgba(245, 158, 11, 0.1); color: var(--accent-amber); }
+        .tier-dominate .tier-icon { background: rgba(16, 185, 129, 0.1); color: var(--accent); }
+
+        .recommended-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .value-highlight {
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .value-secondary {
+            font-size: 12px;
+            color: var(--gray-500);
+            display: block;
+            margin-top: 2px;
+        }
+
+        .roi-value {
+            font-weight: 700;
+        }
+
+        .roi-positive { color: var(--accent); }
+        .roi-strong { color: #059669; }
+
+        /* Visual Comparison */
+        .comparison-section {
+            margin-top: 40px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .comparison-card {
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-align: center;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .comparison-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .comparison-card.featured {
+            border-color: var(--primary);
+            background: linear-gradient(180deg, rgba(37, 99, 235, 0.03) 0%, white 100%);
+        }
+
+        .comparison-card.featured::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
+        }
+
+        .comparison-tier {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-500);
+            margin-bottom: 8px;
+        }
+
+        .comparison-budget {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+        }
+
+        .comparison-budget span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-500);
+        }
+
+        .comparison-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .comparison-stat {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .comparison-stat:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-stat-label {
+            color: var(--gray-500);
+        }
+
+        .comparison-stat-value {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .comparison-cta {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+
+        .comparison-card.featured .comparison-cta {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ROI Section */
+        .roi-section {
+            margin-top: 40px;
+        }
+
+        .roi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .roi-card {
+            background: var(--gray-50);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--gray-100);
+        }
+
+        .roi-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .roi-card h4 svg {
+            width: 18px;
+            height: 18px;
+            color: var(--primary);
+        }
+
+        .roi-breakdown {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .roi-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .roi-item-label {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+
+        .roi-item-value {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .roi-total {
+            background: var(--gradient-3);
+            color: white;
+        }
+
+        .roi-total .roi-item-label,
+        .roi-total .roi-item-value {
+            color: white;
+        }
+
+        /* Assumptions Section */
+        .assumptions {
+            margin-top: 40px;
+        }
+
+        .assumptions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .assumption-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--gray-50);
+            border-radius: 10px;
+        }
+
+        .assumption-icon {
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .assumption-content h5 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+        }
+
+        .assumption-content p {
+            font-size: 12px;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            margin-top: 40px;
+        }
+
+        .timeline {
+            display: flex;
+            gap: 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            right: 40px;
+            height: 2px;
+            background: var(--gray-200);
+        }
+
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 0 16px;
+        }
+
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: 2px solid var(--gray-200);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            position: relative;
+            z-index: 1;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--gray-400);
+        }
+
+        .timeline-item.active .timeline-dot {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .timeline-item.complete .timeline-dot {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .timeline-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 6px;
+        }
+
+        .timeline-desc {
+            font-size: 12px;
+            color: var(--gray-500);
+            line-height: 1.4;
+        }
+
+        /* Recommendations */
+        .recommendations {
+            margin-top: 40px;
+        }
+
+        .rec-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .rec-card {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.2s ease;
+        }
+
+        .rec-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .rec-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: white;
+        }
+
+        .rec-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 6px;
+        }
+
+        .rec-content p {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .footer-meta {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .footer-contact {
+            text-align: right;
+        }
+
+        .footer-contact p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 4px;
+        }
+
+        .footer-contact a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .assumptions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .roi-grid {
+                grid-template-columns: 1fr;
+            }
+            .assumptions-grid {
+                grid-template-columns: 1fr;
+            }
+            .rec-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .timeline::before {
+                display: none;
+            }
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+            .footer-contact {
+                text-align: center;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .header {
+                background: #1e293b !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .card {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Google Ads PPC Forecast
+                </div>
+                <h1>Empire Properties of Louisiana</h1>
+                <p class="subtitle">Lead Generation Performance Forecast for Cash Home Buyer Market in Louisiana</p>
+
+                <div class="header-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Website</span>
+                        <span class="meta-value">sellmyhouseinanycondition.net</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Industry</span>
+                        <span class="meta-value">Real Estate Investment</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Campaign Type</span>
+                        <span class="meta-value">Lead Generation</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Prepared Date</span>
+                        <span class="meta-value">January 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Executive Summary -->
+            <section class="card">
+                <div class="card-header">
+                    <h2>Executive Summary</h2>
+                    <p>Key performance indicators at recommended $3,000/month budget</p>
+                </div>
+                <div class="card-body">
+                    <div class="summary-grid">
+                        <div class="summary-card">
+                            <span class="summary-label">Est. Monthly Clicks</span>
+                            <div class="summary-value">180-220</div>
+                            <span class="summary-change positive">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"></polyline></svg>
+                                Qualified Traffic
+                            </span>
+                        </div>
+                        <div class="summary-card">
+                            <span class="summary-label">Est. Monthly Leads</span>
+                            <div class="summary-value">12-18</div>
+                            <span class="summary-change positive">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"></polyline></svg>
+                                Motivated Sellers
+                            </span>
+                        </div>
+                        <div class="summary-card">
+                            <span class="summary-label">Est. Cost Per Lead</span>
+                            <div class="summary-value">$167-$250</div>
+                            <span class="summary-change positive">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"></polyline></svg>
+                                Industry Competitive
+                            </span>
+                        </div>
+                        <div class="summary-card highlight">
+                            <span class="summary-label">Est. ROI per Deal</span>
+                            <div class="summary-value">233%+</div>
+                            <span class="summary-change" style="background: rgba(255,255,255,0.2); color: white;">
+                                Based on $10K avg profit
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Budget Comparison Table -->
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px; color: var(--gray-800);">Monthly Budget Tier Comparison</h3>
+                    <div class="forecast-table-wrapper">
+                        <table class="forecast-table">
+                            <thead>
+                                <tr>
+                                    <th>Budget Tier</th>
+                                    <th>Monthly Spend</th>
+                                    <th>Est. Clicks</th>
+                                    <th>Est. Leads</th>
+                                    <th>Cost/Lead</th>
+                                    <th>Deals/Quarter*</th>
+                                    <th>Est. ROI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tier-starter">
+                                    <td>
+                                        <div class="tier-badge">
+                                            <span class="tier-icon">1</span>
+                                            Starter
+                                        </div>
+                                    </td>
+                                    <td><span class="value-highlight">$1,500</span></td>
+                                    <td>90-120</td>
+                                    <td>6-9</td>
+                                    <td>$167-$250</td>
+                                    <td>1-2</td>
+                                    <td><span class="roi-value roi-positive">122%</span></td>
+                                </tr>
+                                <tr class="recommended tier-growth">
+                                    <td>
+                                        <div class="tier-badge">
+                                            <span class="tier-icon">2</span>
+                                            Growth
+                                            <span class="recommended-badge">Recommended</span>
+                                        </div>
+                                    </td>
+                                    <td><span class="value-highlight">$3,000</span></td>
+                                    <td>180-220</td>
+                                    <td>12-18</td>
+                                    <td>$167-$250</td>
+                                    <td>3-5</td>
+                                    <td><span class="roi-value roi-strong">233%</span></td>
+                                </tr>
+                                <tr class="tier-scale">
+                                    <td>
+                                        <div class="tier-badge">
+                                            <span class="tier-icon">3</span>
+                                            Scale
+                                        </div>
+                                    </td>
+                                    <td><span class="value-highlight">$5,000</span></td>
+                                    <td>300-380</td>
+                                    <td>20-30</td>
+                                    <td>$167-$250</td>
+                                    <td>6-9</td>
+                                    <td><span class="roi-value roi-strong">280%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="font-size: 12px; color: var(--gray-500); margin-top: 12px;">*Deals/Quarter based on industry-standard 1-in-10 to 1-in-15 lead-to-deal conversion rate for motivated sellers</p>
+                </div>
+            </section>
+
+            <!-- Visual Budget Comparison -->
+            <section class="comparison-section">
+                <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 20px; color: var(--gray-800);">Choose Your Growth Path</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comparison-tier">STARTER</div>
+                        <div class="comparison-budget">$1,500<span>/mo</span></div>
+                        <div class="comparison-stats">
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Clicks</span>
+                                <span class="comparison-stat-value">90-120</span>
+                            </div>
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Leads</span>
+                                <span class="comparison-stat-value">6-9</span>
+                            </div>
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Deals/Qtr</span>
+                                <span class="comparison-stat-value">1-2</span>
+                            </div>
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Qtr Revenue</span>
+                                <span class="comparison-stat-value">$10-20K</span>
+                            </div>
+                        </div>
+                        <div class="comparison-cta">Test the waters</div>
+                    </div>
+
+                    <div class="comparison-card featured">
+                        <div class="comparison-tier">GROWTH</div>
+                        <div class="comparison-budget">$3,000<span>/mo</span></div>
+                        <div class="comparison-stats">
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Clicks</span>
+                                <span class="comparison-stat-value">180-220</span>
+                            </div>
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Leads</span>
+                                <span class="comparison-stat-value">12-18</span>
+                            </div>
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Deals/Qtr</span>
+                                <span class="comparison-stat-value">3-5</span>
+                            </div>
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Qtr Revenue</span>
+                                <span class="comparison-stat-value">$30-50K</span>
+                            </div>
+                        </div>
+                        <div class="comparison-cta">Best for starting</div>
+                    </div>
+
+                    <div class="comparison-card">
+                        <div class="comparison-tier">SCALE</div>
+                        <div class="comparison-budget">$5,000<span>/mo</span></div>
+                        <div class="comparison-stats">
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Clicks</span>
+                                <span class="comparison-stat-value">300-380</span>
+                            </div>
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Leads</span>
+                                <span class="comparison-stat-value">20-30</span>
+                            </div>
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Deals/Qtr</span>
+                                <span class="comparison-stat-value">6-9</span>
+                            </div>
+                            <div class="comparison-stat">
+                                <span class="comparison-stat-label">Qtr Revenue</span>
+                                <span class="comparison-stat-value">$60-90K</span>
+                            </div>
+                        </div>
+                        <div class="comparison-cta">Consistent growth</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ROI Deep Dive -->
+            <section class="card" style="margin-top: 40px;">
+                <div class="card-header">
+                    <h2>ROI Analysis: $3,000/Month Investment</h2>
+                    <p>Detailed breakdown of expected returns at recommended budget</p>
+                </div>
+                <div class="card-body">
+                    <div class="roi-grid">
+                        <div class="roi-card">
+                            <h4>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                Quarterly Investment
+                            </h4>
+                            <div class="roi-breakdown">
+                                <div class="roi-item">
+                                    <span class="roi-item-label">Ad Spend (3 months)</span>
+                                    <span class="roi-item-value">$9,000</span>
+                                </div>
+                                <div class="roi-item roi-total">
+                                    <span class="roi-item-label">Total Quarterly Investment</span>
+                                    <span class="roi-item-value">$9,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="roi-card">
+                            <h4>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                                Quarterly Returns (Conservative)
+                            </h4>
+                            <div class="roi-breakdown">
+                                <div class="roi-item">
+                                    <span class="roi-item-label">Est. Leads Generated</span>
+                                    <span class="roi-item-value">36-54</span>
+                                </div>
+                                <div class="roi-item">
+                                    <span class="roi-item-label">Est. Deals Closed (8%)</span>
+                                    <span class="roi-item-value">3-4</span>
+                                </div>
+                                <div class="roi-item">
+                                    <span class="roi-item-label">Avg. Profit per Deal</span>
+                                    <span class="roi-item-value">$10,000-$15,000</span>
+                                </div>
+                                <div class="roi-item roi-total">
+                                    <span class="roi-item-label">Est. Gross Revenue</span>
+                                    <span class="roi-item-value">$30,000-$60,000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 12px; padding: 24px; margin-top: 24px; color: white; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                        <div>
+                            <div style="font-size: 13px; opacity: 0.9; margin-bottom: 4px;">Conservative Quarterly Net Profit</div>
+                            <div style="font-size: 32px; font-weight: 800;">$21,000 - $51,000</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 13px; opacity: 0.9; margin-bottom: 4px;">Return on Investment</div>
+                            <div style="font-size: 32px; font-weight: 800;">233% - 567%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Assumptions -->
+            <section class="card assumptions" style="margin-top: 40px;">
+                <div class="card-header">
+                    <h2>Forecast Assumptions</h2>
+                    <p>Industry benchmarks and market data used in this forecast</p>
+                </div>
+                <div class="card-body">
+                    <div class="assumptions-grid">
+                        <div class="assumption-item">
+                            <div class="assumption-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            </div>
+                            <div class="assumption-content">
+                                <h5>Average CPC: $14-$18</h5>
+                                <p>Louisiana market is less competitive than major metros, allowing for lower cost-per-click on "we buy houses" keywords.</p>
+                            </div>
+                        </div>
+                        <div class="assumption-item">
+                            <div class="assumption-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <div class="assumption-content">
+                                <h5>Conversion Rate: 6-8%</h5>
+                                <p>Based on optimized landing page with clear CTA. Industry average is 3-5% but your site structure supports higher rates.</p>
+                            </div>
+                        </div>
+                        <div class="assumption-item">
+                            <div class="assumption-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <div class="assumption-content">
+                                <h5>Lead-to-Deal: 7-10%</h5>
+                                <p>Industry standard for cash buyer leads is 1-in-10 to 1-in-15 motivated seller leads resulting in a closed deal.</p>
+                            </div>
+                        </div>
+                        <div class="assumption-item">
+                            <div class="assumption-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                            </div>
+                            <div class="assumption-content">
+                                <h5>Avg Deal Profit: $10-15K</h5>
+                                <p>Based on Louisiana market wholesale/assignment fees. National average ranges $5K-$30K depending on deal type.</p>
+                            </div>
+                        </div>
+                        <div class="assumption-item">
+                            <div class="assumption-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="assumption-content">
+                                <h5>Geographic: Louisiana</h5>
+                                <p>Targeting Louisiana market with focus on high-intent keywords for motivated sellers in distressed situations.</p>
+                            </div>
+                        </div>
+                        <div class="assumption-item">
+                            <div class="assumption-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                            <div class="assumption-content">
+                                <h5>Ramp Period: 60-90 Days</h5>
+                                <p>Google Ads requires 2-3 months to optimize. Full performance expected after learning period completes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Campaign Timeline -->
+            <section class="card timeline-section" style="margin-top: 40px;">
+                <div class="card-header">
+                    <h2>Campaign Performance Timeline</h2>
+                    <p>What to expect as your campaign matures</p>
+                </div>
+                <div class="card-body">
+                    <div class="timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-dot">1</div>
+                            <div class="timeline-title">Month 1: Learning</div>
+                            <div class="timeline-desc">Campaign setup, keyword testing, initial data collection. Lower volume expected.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot">2</div>
+                            <div class="timeline-title">Month 2: Optimization</div>
+                            <div class="timeline-desc">Negative keywords added, bid adjustments, landing page refinements.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot">3</div>
+                            <div class="timeline-title">Month 3: Acceleration</div>
+                            <div class="timeline-desc">Conversion tracking mature, Smart Bidding activated, lead quality improves.</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot">4+</div>
+                            <div class="timeline-title">Ongoing: Scale</div>
+                            <div class="timeline-desc">Consistent performance, expansion opportunities, budget scaling decisions.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recommendations -->
+            <section class="card recommendations" style="margin-top: 40px;">
+                <div class="card-header">
+                    <h2>Strategic Recommendations</h2>
+                    <p>Maximize ROI with these proven strategies</p>
+                </div>
+                <div class="card-body">
+                    <div class="rec-grid">
+                        <div class="rec-card">
+                            <div class="rec-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            </div>
+                            <div class="rec-content">
+                                <h4>Start with Long-Tail Keywords</h4>
+                                <p>Target specific phrases like "sell inherited house fast Louisiana" for lower CPCs and higher-intent leads.</p>
+                            </div>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                            </div>
+                            <div class="rec-content">
+                                <h4>Dedicated Landing Pages</h4>
+                                <p>Create specific pages for each keyword theme (foreclosure, divorce, probate) to boost conversion rates.</p>
+                            </div>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </div>
+                            <div class="rec-content">
+                                <h4>Implement Call Tracking</h4>
+                                <p>Track phone calls as conversions - many motivated sellers prefer calling over forms. Essential for accurate ROI.</p>
+                            </div>
+                        </div>
+                        <div class="rec-card">
+                            <div class="rec-icon">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            </div>
+                            <div class="rec-content">
+                                <h4>Commit to 90 Days Minimum</h4>
+                                <p>Google's algorithm needs time to learn. Expect full performance after the initial optimization period.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Target Keywords Preview -->
+            <section class="card" style="margin-top: 40px;">
+                <div class="card-header">
+                    <h2>Target Keyword Categories</h2>
+                    <p>High-intent keywords for motivated seller lead generation</p>
+                </div>
+                <div class="card-body">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                        <div style="background: var(--gray-50); border-radius: 12px; padding: 20px;">
+                            <h4 style="font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 12px;">Core "We Buy Houses"</h4>
+                            <ul style="font-size: 13px; color: var(--gray-600); list-style: none;">
+                                <li style="padding: 6px 0; border-bottom: 1px solid var(--gray-200);">• we buy houses Louisiana</li>
+                                <li style="padding: 6px 0; border-bottom: 1px solid var(--gray-200);">• sell my house fast [city]</li>
+                                <li style="padding: 6px 0; border-bottom: 1px solid var(--gray-200);">• cash home buyers near me</li>
+                                <li style="padding: 6px 0;">• sell house as-is Louisiana</li>
+                            </ul>
+                        </div>
+                        <div style="background: var(--gray-50); border-radius: 12px; padding: 20px;">
+                            <h4 style="font-size: 14px; font-weight: 600; color: #7c3aed; margin-bottom: 12px;">Situation-Based</h4>
+                            <ul style="font-size: 13px; color: var(--gray-600); list-style: none;">
+                                <li style="padding: 6px 0; border-bottom: 1px solid var(--gray-200);">• sell inherited house fast</li>
+                                <li style="padding: 6px 0; border-bottom: 1px solid var(--gray-200);">• avoid foreclosure Louisiana</li>
+                                <li style="padding: 6px 0; border-bottom: 1px solid var(--gray-200);">• sell house during divorce</li>
+                                <li style="padding: 6px 0;">• sell fire damaged house</li>
+                            </ul>
+                        </div>
+                        <div style="background: var(--gray-50); border-radius: 12px; padding: 20px;">
+                            <h4 style="font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 12px;">Long-Tail (Lower CPC)</h4>
+                            <ul style="font-size: 13px; color: var(--gray-600); list-style: none;">
+                                <li style="padding: 6px 0; border-bottom: 1px solid var(--gray-200);">• sell house without realtor LA</li>
+                                <li style="padding: 6px 0; border-bottom: 1px solid var(--gray-200);">• sell ugly house fast cash</li>
+                                <li style="padding: 6px 0; border-bottom: 1px solid var(--gray-200);">• sell rental property quick</li>
+                                <li style="padding: 6px 0;">• sell house no repairs needed</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section style="background: var(--gradient-2); border-radius: 16px; padding: 48px; margin-top: 40px; text-align: center; color: white;">
+                <h2 style="font-size: 28px; font-weight: 800; margin-bottom: 12px;">Ready to Generate More Leads?</h2>
+                <p style="font-size: 16px; opacity: 0.9; max-width: 500px; margin: 0 auto 24px;">Start with our recommended $3,000/month budget and scale as you see results.</p>
+                <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+                    <div style="background: white; color: var(--gray-900); padding: 14px 28px; border-radius: 8px; font-weight: 600; font-size: 14px;">
+                        Contact: Robert Hebert Media
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">Empire Properties of Louisiana</div>
+                    <p class="footer-meta">Google Ads PPC Forecast | January 2026</p>
+                </div>
+                <div class="footer-contact">
+                    <p>Prepared by</p>
+                    <a href="#">Robert Hebert Media</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate numbers on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.summary-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
