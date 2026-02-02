@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PFBHNC Monthly Performance Report | January 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .header .date-range {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 25px;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .section-title {
+            background: linear-gradient(180deg, #00d4ff 0%, #0f3460 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px 8px 0 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 30px;
+        }
+
+        .section-content {
+            background: white;
+            padding: 25px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #00d4ff;
+        }
+
+        .metric-card.positive {
+            border-left-color: #28a745;
+        }
+
+        .metric-card.negative {
+            border-left-color: #dc3545;
+        }
+
+        .metric-card.neutral {
+            border-left-color: #6c757d;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .metric-change {
+            font-size: 0.85rem;
+            margin-top: 8px;
+            padding: 4px 10px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .metric-change.up {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .metric-change.down {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .metric-change.flat {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .executive-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .executive-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .summary-box {
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .summary-box.highlights {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+        }
+
+        .summary-box.watch {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            border-left: 4px solid #ffc107;
+        }
+
+        .summary-box h3 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .summary-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.95rem;
+        }
+
+        .summary-box li:last-child {
+            border-bottom: none;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin: 20px 0;
+        }
+
+        .campaign-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .campaign-table th {
+            background: #1a1a2e;
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .campaign-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .campaign-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .campaign-table .campaign-name {
+            font-weight: 600;
+            color: #1a1a2e;
+            max-width: 250px;
+        }
+
+        .badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-pmax {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .badge-search {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .change-positive {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .change-negative {
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .insight-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #00d4ff;
+        }
+
+        .insight-card h4 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+
+        .insight-card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .recommendations {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .recommendations h4 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+
+        .recommendations ol {
+            padding-left: 20px;
+        }
+
+        .recommendations li {
+            padding: 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        .comparison-note {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        .winner-badge {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .alert-badge {
+            background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>PFBHNC Monthly Performance Report</h1>
+        <div class="subtitle">Google Ads Campaign Analysis</div>
+        <div class="date-range">January 2026 vs December 2025</div>
+    </div>
+
+    <div class="container">
+        <!-- Executive Summary -->
+        <div class="section-title">Executive Summary</div>
+        <div class="section-content">
+            <div class="comparison-note">
+                Comparing January 1-31, 2026 to December 1-31, 2025
+            </div>
+            <div class="executive-summary">
+                <div class="summary-box highlights">
+                    <h3>Monthly Highlights</h3>
+                    <ul>
+                        <li><strong>TMS Therapy Campaign:</strong> Conversions up 109.6% with cost per conversion down 52.4%</li>
+                        <li><strong>Telehealth (All of NC):</strong> Conversions increased 36.3% while reducing cost per lead by 27.2%</li>
+                        <li><strong>Charlotte Therapy Services:</strong> Steady growth with conversions up 4.1%</li>
+                        <li><strong>Cost Efficiency:</strong> Average CPC improved by 11.3% across all campaigns</li>
+                    </ul>
+                </div>
+                <div class="summary-box watch">
+                    <h3>Areas Requiring Attention</h3>
+                    <ul>
+                        <li><strong>NewADHD-PMax:</strong> Conversions dropped 60.2% - needs immediate review</li>
+                        <li><strong>Overall Conversion Rate:</strong> Declined from 23% to 16.5% account-wide</li>
+                        <li><strong>Spravato Campaign:</strong> Conversions down 23.4% with rising costs</li>
+                        <li><strong>Budget Limitations:</strong> Most campaigns limited by budget constraints</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="section-title">Key Performance Metrics</div>
+        <div class="section-content">
+            <div class="metrics-grid">
+                <div class="metric-card neutral">
+                    <div class="metric-value">$12,494</div>
+                    <div class="metric-label">Total Ad Spend</div>
+                    <div class="metric-change flat">+0.01% vs Dec</div>
+                </div>
+                <div class="metric-card negative">
+                    <div class="metric-value">3,922</div>
+                    <div class="metric-label">Total Conversions</div>
+                    <div class="metric-change down">-17.1% vs Dec</div>
+                </div>
+                <div class="metric-card negative">
+                    <div class="metric-value">$3.19</div>
+                    <div class="metric-label">Avg Cost/Conversion</div>
+                    <div class="metric-change down">+20.7% vs Dec</div>
+                </div>
+                <div class="metric-card negative">
+                    <div class="metric-value">16.5%</div>
+                    <div class="metric-label">Conversion Rate</div>
+                    <div class="metric-change down">-28.3% vs Dec</div>
+                </div>
+                <div class="metric-card positive">
+                    <div class="metric-value">$0.54</div>
+                    <div class="metric-label">Average CPC</div>
+                    <div class="metric-change up">-11.3% vs Dec</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">7</div>
+                    <div class="metric-label">Active Campaigns</div>
+                    <div class="metric-change flat">All Enabled</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campaign Performance Chart -->
+        <div class="section-title">Campaign Performance Comparison</div>
+        <div class="section-content">
+            <div class="chart-container">
+                <canvas id="campaignChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Conversion Changes Chart -->
+        <div class="section-title">Conversion Changes by Campaign</div>
+        <div class="section-content">
+            <div class="chart-container">
+                <canvas id="conversionChangeChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Campaign Details Table -->
+        <div class="section-title">Campaign Details</div>
+        <div class="section-content">
+            <div class="table-responsive">
+                <table class="campaign-table">
+                    <thead>
+                        <tr>
+                            <th>Campaign</th>
+                            <th>Type</th>
+                            <th>Budget</th>
+                            <th>Spend</th>
+                            <th>Conversions</th>
+                            <th>Conv. Change</th>
+                            <th>Cost/Conv</th>
+                            <th>CPC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="campaign-name">NeuroStar TMS Therapy<span class="winner-badge">TOP PERFORMER</span></td>
+                            <td><span class="badge badge-search">Search</span></td>
+                            <td>$25/day</td>
+                            <td>$758.89</td>
+                            <td>42.04</td>
+                            <td class="change-positive">+109.6%</td>
+                            <td>$18.05 <span class="change-positive">(-52.4%)</span></td>
+                            <td>$5.54</td>
+                        </tr>
+                        <tr>
+                            <td class="campaign-name">Telehealth | All of NC<span class="winner-badge">STRONG</span></td>
+                            <td><span class="badge badge-pmax">PMax</span></td>
+                            <td>$25/day</td>
+                            <td>$751.96</td>
+                            <td>489.77</td>
+                            <td class="change-positive">+36.3%</td>
+                            <td>$1.54 <span class="change-positive">(-27.2%)</span></td>
+                            <td>$0.31</td>
+                        </tr>
+                        <tr>
+                            <td class="campaign-name">Therapy Services | Charlotte NC</td>
+                            <td><span class="badge badge-search">Search</span></td>
+                            <td>$60/day</td>
+                            <td>$1,810.97</td>
+                            <td>183.30</td>
+                            <td class="change-positive">+4.1%</td>
+                            <td>$9.88 <span class="change-positive">(-3.5%)</span></td>
+                            <td>$2.31</td>
+                        </tr>
+                        <tr>
+                            <td class="campaign-name">General Psychiatry Counseling</td>
+                            <td><span class="badge badge-pmax">PMax</span></td>
+                            <td>$165/day</td>
+                            <td>$5,016.28</td>
+                            <td>2,285.26</td>
+                            <td class="change-negative">-3.1%</td>
+                            <td>$2.20 <span class="change-negative">(+3.2%)</span></td>
+                            <td>$0.38</td>
+                        </tr>
+                        <tr>
+                            <td class="campaign-name">ADHD | Performance Max</td>
+                            <td><span class="badge badge-pmax">PMax</span></td>
+                            <td>$10/day</td>
+                            <td>$281.54</td>
+                            <td>122.94</td>
+                            <td class="change-negative">-17.0%</td>
+                            <td>$2.29 <span class="change-negative">(+11.8%)</span></td>
+                            <td>$0.74</td>
+                        </tr>
+                        <tr>
+                            <td class="campaign-name">Spravato Leads</td>
+                            <td><span class="badge badge-pmax">PMax</span></td>
+                            <td>$33/day</td>
+                            <td>$1,003.97</td>
+                            <td>277.25</td>
+                            <td class="change-negative">-23.4%</td>
+                            <td>$3.62 <span class="change-negative">(+33.3%)</span></td>
+                            <td>$0.53</td>
+                        </tr>
+                        <tr>
+                            <td class="campaign-name">NewADHD-PMax<span class="alert-badge">NEEDS REVIEW</span></td>
+                            <td><span class="badge badge-pmax">PMax</span></td>
+                            <td>$95/day</td>
+                            <td>$2,870.06</td>
+                            <td>521.84</td>
+                            <td class="change-negative">-60.2%</td>
+                            <td>$5.50 <span class="change-negative">(+150.9%)</span></td>
+                            <td>$0.69</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background: #f8f9fa; font-weight: 600;">
+                            <td>TOTAL</td>
+                            <td>--</td>
+                            <td>$413/day</td>
+                            <td>$12,493.67</td>
+                            <td>3,922.39</td>
+                            <td class="change-negative">-17.1%</td>
+                            <td>$3.19</td>
+                            <td>$0.54</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- Campaign Type Breakdown -->
+        <div class="section-title">Performance by Campaign Type</div>
+        <div class="section-content">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value" style="font-size: 1.5rem;">Performance Max</div>
+                    <div class="metric-label">5 Campaigns | $9,923.82 Spend</div>
+                    <div style="margin-top: 15px; text-align: left; font-size: 0.9rem;">
+                        <div>Conversions: <strong>3,697</strong> <span class="change-negative">(-18.5%)</span></div>
+                        <div>Cost/Conv: <strong>$2.68</strong> <span class="change-negative">(+22.6%)</span></div>
+                        <div>Conv Rate: <strong>16.2%</strong> <span class="change-negative">(-29.4%)</span></div>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" style="font-size: 1.5rem;">Search</div>
+                    <div class="metric-label">2 Campaigns | $2,569.85 Spend</div>
+                    <div style="margin-top: 15px; text-align: left; font-size: 0.9rem;">
+                        <div>Conversions: <strong>225</strong> <span class="change-positive">(+14.9%)</span></div>
+                        <div>Cost/Conv: <strong>$11.40</strong> <span class="change-positive">(-12.7%)</span></div>
+                        <div>Conv Rate: <strong>24.4%</strong> <span class="change-negative">(-2.9%)</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Insights -->
+        <div class="section-title">Key Insights & Analysis</div>
+        <div class="section-content">
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h4>Search Campaigns Outperforming PMax</h4>
+                    <p>Search campaigns delivered a 14.9% increase in conversions while PMax campaigns saw an 18.5% decline. Consider reallocating budget from underperforming PMax campaigns to Search.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>TMS Therapy Campaign Success</h4>
+                    <p>The NeuroStar TMS Therapy campaign more than doubled conversions while cutting cost per conversion in half. This specialized service messaging is resonating strongly with the target audience.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>NewADHD-PMax Performance Decline</h4>
+                    <p>This campaign saw a dramatic 60% drop in conversions with cost per conversion increasing by 151%. With a $95/day budget, this represents the largest opportunity for optimization.</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Telehealth Expansion Working</h4>
+                    <p>The expanded "All of NC" telehealth campaign is performing excellently with 36% more conversions at a 27% lower cost. The statewide targeting expansion is proving successful.</p>
+                </div>
+            </div>
+
+            <div class="recommendations">
+                <h4>Recommended Actions for February 2026</h4>
+                <ol>
+                    <li><strong>Audit NewADHD-PMax Campaign:</strong> Review asset groups, targeting, and creative elements. Consider pausing and rebuilding with updated assets given the 60% conversion drop.</li>
+                    <li><strong>Increase TMS Therapy Budget:</strong> With exceptional performance and a low $25/day budget, there's room to scale this high-converting campaign.</li>
+                    <li><strong>Address Policy Limitations:</strong> Multiple campaigns show "asset groups limited by policy" - review and update flagged creatives to improve delivery.</li>
+                    <li><strong>Review Budget Allocation:</strong> With 6 of 7 campaigns limited by budget, consider consolidating spend toward top performers (TMS, Telehealth, Charlotte Therapy).</li>
+                    <li><strong>Investigate Conversion Rate Decline:</strong> The account-wide 28% drop in conversion rate suggests potential landing page or tracking issues worth investigating.</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Budget Utilization -->
+        <div class="section-title">Budget & Status Overview</div>
+        <div class="section-content">
+            <div class="chart-container" style="height: 300px;">
+                <canvas id="budgetChart"></canvas>
+            </div>
+            <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px;">
+                <strong>Note:</strong> All campaigns are showing "Limited by Budget" or policy restrictions. This indicates potential for improved performance with budget increases or creative updates.
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Report generated for Robert Hebert Media | February 2026</p>
+        <p style="margin-top: 10px;">Powered by <a href="https://blok.co">Blok.co</a></p>
+    </div>
+
+    <script>
+        // Campaign Performance Comparison Chart
+        const campaignCtx = document.getElementById('campaignChart').getContext('2d');
+        new Chart(campaignCtx, {
+            type: 'bar',
+            data: {
+                labels: ['General Psych', 'NewADHD', 'Charlotte Therapy', 'Spravato', 'Telehealth NC', 'TMS Therapy', 'ADHD PMax'],
+                datasets: [{
+                    label: 'January 2026',
+                    data: [5016.28, 2870.06, 1810.97, 1003.97, 751.96, 758.89, 281.54],
+                    backgroundColor: 'rgba(0, 212, 255, 0.8)',
+                    borderColor: 'rgba(0, 212, 255, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'December 2025',
+                    data: [5015.10, 2870.70, 1802.21, 983.47, 757.32, 759.87, 303.62],
+                    backgroundColor: 'rgba(26, 26, 46, 0.6)',
+                    borderColor: 'rgba(26, 26, 46, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Monthly Ad Spend by Campaign ($)',
+                        font: { size: 16 }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Conversion Changes Chart
+        const convCtx = document.getElementById('conversionChangeChart').getContext('2d');
+        new Chart(convCtx, {
+            type: 'bar',
+            data: {
+                labels: ['TMS Therapy', 'Telehealth NC', 'Charlotte Therapy', 'General Psych', 'ADHD PMax', 'Spravato', 'NewADHD'],
+                datasets: [{
+                    label: 'Conversion Change %',
+                    data: [109.63, 36.29, 4.08, -3.06, -17.02, -23.43, -60.15],
+                    backgroundColor: [
+                        'rgba(40, 167, 69, 0.8)',
+                        'rgba(40, 167, 69, 0.8)',
+                        'rgba(40, 167, 69, 0.8)',
+                        'rgba(220, 53, 69, 0.8)',
+                        'rgba(220, 53, 69, 0.8)',
+                        'rgba(220, 53, 69, 0.8)',
+                        'rgba(220, 53, 69, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(40, 167, 69, 1)',
+                        'rgba(40, 167, 69, 1)',
+                        'rgba(40, 167, 69, 1)',
+                        'rgba(220, 53, 69, 1)',
+                        'rgba(220, 53, 69, 1)',
+                        'rgba(220, 53, 69, 1)',
+                        'rgba(220, 53, 69, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Conversion Change by Campaign (January vs December)',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Budget Allocation Chart
+        const budgetCtx = document.getElementById('budgetChart').getContext('2d');
+        new Chart(budgetCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['General Psych ($165)', 'NewADHD ($95)', 'Charlotte Therapy ($60)', 'Spravato ($33)', 'Telehealth NC ($25)', 'TMS Therapy ($25)', 'ADHD PMax ($10)'],
+                datasets: [{
+                    data: [165, 95, 60, 33, 25, 25, 10],
+                    backgroundColor: [
+                        'rgba(0, 212, 255, 0.8)',
+                        'rgba(220, 53, 69, 0.8)',
+                        'rgba(40, 167, 69, 0.8)',
+                        'rgba(255, 193, 7, 0.8)',
+                        'rgba(40, 167, 69, 0.7)',
+                        'rgba(40, 167, 69, 0.9)',
+                        'rgba(108, 117, 125, 0.8)'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Daily Budget Allocation ($413/day total)',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
