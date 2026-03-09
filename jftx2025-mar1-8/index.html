@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary: #0066CC;
@@ -94,7 +93,15 @@
         .footer-brand { font-size: 12px; color: var(--gray-500); }
         .footer-brand a { color: var(--primary); text-decoration: none; font-weight: 500; }
         .footer-meta { font-size: 11px; color: var(--gray-400); }
-        @media (max-width: 768px) { .report-container { padding: 20px; } .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } .kpi-value { font-size: 28px; } .header-top { flex-direction: column; gap: 8px; } .chart-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .report-container { padding: 20px; } .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } .kpi-value { font-size: 28px; } .header-top { flex-direction: column; gap: 8px; } }
+        @media print {
+            .kpi-section, .table-section, .insights-section { page-break-inside: avoid; }
+            .report-header { page-break-after: avoid; }
+            .executive-summary { page-break-after: avoid; }
+            .insight-card { page-break-inside: avoid; }
+            .data-table { page-break-inside: avoid; }
+            .report-footer { page-break-inside: avoid; }
+        }
     </style>
 </head>
 <body>
@@ -158,18 +165,6 @@
                     <div class="kpi-label">Demand Gen CTR</div>
                     <div class="kpi-value">5.00%</div>
                     <div class="kpi-change positive">+3.99% vs last week</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="chart-section">
-            <div class="section-header">Week-over-Week Comparison</div>
-            <div class="chart-grid">
-                <div class="chart-container">
-                    <canvas id="spendClicksChart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <canvas id="impressionsChart"></canvas>
                 </div>
             </div>
         </section>
@@ -271,7 +266,7 @@
         </section>
 
         <section class="insights-section">
-            <div class="section-header">Key Insights & Recommendations</div>
+            <div class="section-header">Key Insights</div>
             <div class="insight-card">
                 <div class="insight-header">
                     <div class="insight-icon warning">!</div>
@@ -309,18 +304,6 @@
                     these quality metrics should carry over at scale.
                 </p>
             </div>
-            <div class="insight-card">
-                <div class="insight-header">
-                    <div class="insight-icon info">&rarr;</div>
-                    <div class="insight-title">Recommendations</div>
-                </div>
-                <p class="insight-text">
-                    1) <strong>Immediate:</strong> Review and resolve all disapproved video ads&mdash;this is the single highest-impact action to restore reach and lower CPC<br>
-                    2) Consider submitting appeals or revised creatives for any ads flagged by policy<br>
-                    3) Continue investing in Demand Gen&mdash;at $0.04 CPC and 5% CTR, there may be opportunity to increase budget here while Video is being resolved<br>
-                    4) Monitor Video campaign daily after ad resubmission to confirm delivery recovery
-                </p>
-            </div>
         </section>
 
         <footer class="report-footer">
@@ -329,45 +312,5 @@
         </footer>
     </div>
 
-    <script>
-        const chartColors = {
-            primary: '#0066CC',
-            primaryLight: 'rgba(0, 102, 204, 0.1)',
-            success: '#059669',
-            successLight: 'rgba(5, 150, 105, 0.1)',
-            gray: '#9CA3AF',
-            grayLight: 'rgba(156, 163, 175, 0.1)'
-        };
-        new Chart(document.getElementById('spendClicksChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Total Spend', 'Total Clicks'],
-                datasets: [
-                    { label: 'This Week', data: [1079.42, 8930], backgroundColor: chartColors.primary, borderRadius: 4 },
-                    { label: 'Previous Week', data: [1067.55, 10226], backgroundColor: chartColors.gray, borderRadius: 4 }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: { title: { display: true, text: 'Spend & Clicks Comparison', font: { size: 14, weight: '600' }, color: '#1F2937' }, legend: { position: 'bottom' } },
-                scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
-            }
-        });
-        new Chart(document.getElementById('impressionsChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Impressions', 'Video Views', 'Interactions'],
-                datasets: [
-                    { label: 'This Week', data: [275808, 14822, 40882], backgroundColor: chartColors.primary, borderRadius: 4 },
-                    { label: 'Previous Week', data: [488125, 58826, 97194], backgroundColor: chartColors.gray, borderRadius: 4 }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: { title: { display: true, text: 'Reach & Engagement Comparison', font: { size: 14, weight: '600' }, color: '#1F2937' }, legend: { position: 'bottom' } },
-                scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
-            }
-        });
-    </script>
 </body>
 </html>
