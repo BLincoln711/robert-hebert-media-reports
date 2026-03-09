@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Performance Report | PFBHNC | March 2–8, 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #0066CC;
+            --success: #059669;
+            --warning: #D97706;
+            --danger: #DC2626;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fff;
+            color: var(--gray-800);
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        .report-container { max-width: 1100px; margin: 0 auto; padding: 40px; }
+        .report-header { border-bottom: 3px solid var(--primary); padding-bottom: 24px; margin-bottom: 32px; }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+        .brand { font-size: 12px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 1.5px; }
+        .report-date { font-size: 12px; color: var(--gray-500); text-align: right; }
+        .client-name { font-size: 32px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+        .report-title { font-size: 18px; font-weight: 400; color: var(--gray-600); }
+        .report-period { display: inline-block; background: var(--primary); color: white; padding: 6px 16px; border-radius: 4px; font-size: 13px; font-weight: 500; margin-top: 12px; }
+        .executive-summary { background: var(--gray-50); border-left: 4px solid var(--primary); padding: 24px 28px; margin-bottom: 40px; }
+        .summary-title { font-size: 11px; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .summary-text { font-size: 16px; color: var(--gray-700); line-height: 1.7; }
+        .summary-text strong { color: var(--gray-900); font-weight: 600; }
+        .kpi-section { margin-bottom: 48px; }
+        .section-header { font-size: 11px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-200); }
+        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .kpi-card { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 24px; position: relative; }
+        .kpi-card.highlight { border-color: var(--primary); border-width: 2px; }
+        .kpi-label { font-size: 12px; font-weight: 500; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .kpi-value { font-size: 36px; font-weight: 700; color: var(--gray-900); line-height: 1; margin-bottom: 8px; }
+        .kpi-card.highlight .kpi-value { color: var(--primary); }
+        .kpi-change { font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 4px; }
+        .kpi-change.positive { color: var(--success); }
+        .kpi-change.negative { color: var(--danger); }
+        .kpi-change.neutral { color: var(--gray-400); }
+        .kpi-subtitle { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+        .performance-badge { position: absolute; top: 16px; right: 16px; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .performance-badge.excellent { background: #D1FAE5; color: #065F46; }
+        .performance-badge.good { background: #DBEAFE; color: #1E40AF; }
+        .performance-badge.steady { background: #FEF3C7; color: #92400E; }
+        .performance-badge.caution { background: #FEE2E2; color: #991B1B; }
+        .chart-section { margin-bottom: 48px; }
+        .chart-container { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 24px; }
+        .chart-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .table-section { margin-bottom: 48px; }
+        .data-table { width: 100%; border-collapse: collapse; background: white; border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; }
+        .data-table thead { background: var(--gray-50); }
+        .data-table th { padding: 14px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--gray-200); }
+        .data-table th:not(:first-child) { text-align: right; }
+        .data-table td { padding: 16px; border-bottom: 1px solid var(--gray-100); font-size: 14px; }
+        .data-table td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+        .data-table tbody tr:hover { background: var(--gray-50); }
+        .data-table tbody tr:last-child td { border-bottom: none; }
+        .data-table tbody tr.total-row { background: var(--gray-50); font-weight: 600; }
+        .metric-name { font-weight: 500; color: var(--gray-800); }
+        .metric-value { font-weight: 600; color: var(--gray-900); }
+        .change-positive { color: var(--success); font-weight: 500; }
+        .change-negative { color: var(--danger); font-weight: 500; }
+        .change-neutral { color: var(--gray-400); font-weight: 500; }
+        .insights-section { margin-bottom: 48px; }
+        .insight-card { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 24px; margin-bottom: 16px; }
+        .insight-card:last-child { margin-bottom: 0; }
+        .insight-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .insight-icon { width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .insight-icon.success { background: #D1FAE5; }
+        .insight-icon.info { background: #DBEAFE; }
+        .insight-icon.warning { background: #FEF3C7; }
+        .insight-title { font-size: 14px; font-weight: 600; color: var(--gray-800); }
+        .insight-text { font-size: 14px; color: var(--gray-600); line-height: 1.6; }
+        .report-footer { border-top: 1px solid var(--gray-200); padding-top: 24px; margin-top: 48px; display: flex; justify-content: space-between; align-items: center; }
+        .footer-brand { font-size: 12px; color: var(--gray-500); }
+        .footer-brand a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .footer-meta { font-size: 11px; color: var(--gray-400); }
+        @media (max-width: 768px) { .report-container { padding: 20px; } .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } .kpi-value { font-size: 28px; } .header-top { flex-direction: column; gap: 8px; } .chart-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <header class="report-header">
+            <div class="header-top">
+                <div class="brand">Robert Hebert Media</div>
+                <div class="report-date">Report Generated: March 9, 2026<br>Confidential</div>
+            </div>
+            <h1 class="client-name">PFBHNC</h1>
+            <p class="report-title">Weekly Google Ads Performance Report</p>
+            <span class="report-period">March 2 &ndash; 8, 2026</span>
+        </header>
+
+        <div class="executive-summary">
+            <div class="summary-title">Executive Summary</div>
+            <p class="summary-text">
+                <strong>Cost savings continued this week with spend down 6.3%.</strong> Total spend decreased to
+                <strong>$2,773.18</strong> (from $2,958.21) while impressions held relatively steady at <strong>26,105</strong>.
+                Clicks declined <strong>9.3%</strong> to <strong>3,650</strong>, with CPC rising slightly to <strong>$0.76</strong>.
+                Key highlights include <strong>Therapy Services Charlotte</strong> with a 37.7% surge in impressions and
+                <strong>Spravato Leads PMax</strong> delivering 27.5% more impressions with 20.3% more clicks at a lower CPC.
+                The <strong>Morgantown &amp; Hickory Telehealth</strong> campaign maintained the lowest CPC in the account at just <strong>$0.42</strong>.
+            </p>
+        </div>
+
+        <section class="kpi-section">
+            <div class="section-header">Key Performance Indicators</div>
+            <div class="kpi-grid">
+                <div class="kpi-card highlight">
+                    <span class="performance-badge excellent">Savings</span>
+                    <div class="kpi-label">Total Spend</div>
+                    <div class="kpi-value">$2,773</div>
+                    <div class="kpi-change positive">-6.25% vs last week (savings)</div>
+                </div>
+                <div class="kpi-card highlight">
+                    <span class="performance-badge steady">+3.4%</span>
+                    <div class="kpi-label">Avg. Cost Per Click</div>
+                    <div class="kpi-value">$0.76</div>
+                    <div class="kpi-change negative">+3.38% vs last week</div>
+                </div>
+                <div class="kpi-card">
+                    <span class="performance-badge steady">Stable</span>
+                    <div class="kpi-label">Click-Through Rate</div>
+                    <div class="kpi-value">13.98%</div>
+                    <div class="kpi-change negative">-3.92% vs last week</div>
+                </div>
+                <div class="kpi-card">
+                    <span class="performance-badge caution">-9.3%</span>
+                    <div class="kpi-label">Total Clicks</div>
+                    <div class="kpi-value">3,650</div>
+                    <div class="kpi-change negative">-9.32% vs last week</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Impressions</div>
+                    <div class="kpi-value">26,105</div>
+                    <div class="kpi-change negative">-5.62% vs last week</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Interactions</div>
+                    <div class="kpi-value">3,651</div>
+                    <div class="kpi-change negative">-9.31% vs last week</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="chart-section">
+            <div class="section-header">Week-over-Week Comparison</div>
+            <div class="chart-grid">
+                <div class="chart-container">
+                    <canvas id="spendClicksChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="campaignChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="table-section">
+            <div class="section-header">Campaign Breakdown &mdash; Performance Max</div>
+            <table class="data-table">
+                <thead>
+                    <tr><th>Campaign</th><th>Spend</th><th>Clicks</th><th>Impr.</th><th>CPC</th><th>CTR</th><th>Change (Spend)</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="metric-name">NewADHD-PMax</td>
+                        <td class="metric-value">$667.07</td>
+                        <td>571</td>
+                        <td>8,365</td>
+                        <td>$1.17</td>
+                        <td>6.83%</td>
+                        <td class="change-negative">+10.28%</td>
+                    </tr>
+                    <tr>
+                        <td class="metric-name">General Psychiatry &amp; Counseling</td>
+                        <td class="metric-value">$1,142.92</td>
+                        <td>2,138</td>
+                        <td>10,801</td>
+                        <td>$0.53</td>
+                        <td>19.79%</td>
+                        <td class="change-positive">-18.30%</td>
+                    </tr>
+                    <tr>
+                        <td class="metric-name">Spravato Leads PMax</td>
+                        <td class="metric-value">$251.35</td>
+                        <td>308</td>
+                        <td>2,083</td>
+                        <td>$0.82</td>
+                        <td>14.79%</td>
+                        <td class="change-positive">-1.15%</td>
+                    </tr>
+                    <tr>
+                        <td class="metric-name">Morgantown &amp; Hickory Telehealth</td>
+                        <td class="metric-value">$156.12</td>
+                        <td>376</td>
+                        <td>1,833</td>
+                        <td>$0.42</td>
+                        <td>20.51%</td>
+                        <td class="change-positive">-14.81%</td>
+                    </tr>
+                    <tr>
+                        <td class="metric-name">ADHD PMax (Legacy)</td>
+                        <td class="metric-value">$67.89</td>
+                        <td>105</td>
+                        <td>694</td>
+                        <td>$0.65</td>
+                        <td>15.13%</td>
+                        <td class="change-negative">+5.37%</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td class="metric-name">PMax Total</td>
+                        <td class="metric-value">$2,285.36</td>
+                        <td>3,498</td>
+                        <td>23,776</td>
+                        <td>$0.65</td>
+                        <td>14.71%</td>
+                        <td class="change-positive">-8.80%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="table-section">
+            <div class="section-header">Campaign Breakdown &mdash; Search</div>
+            <table class="data-table">
+                <thead>
+                    <tr><th>Campaign</th><th>Spend</th><th>Clicks</th><th>Impr.</th><th>CPC</th><th>CTR</th><th>Change (Spend)</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="metric-name">Spravato Search</td>
+                        <td class="metric-value">$182.35</td>
+                        <td>52</td>
+                        <td>1,051</td>
+                        <td>$3.51</td>
+                        <td>4.95%</td>
+                        <td class="change-negative">+12.74%</td>
+                    </tr>
+                    <tr>
+                        <td class="metric-name">NeuroStar TMS Therapy</td>
+                        <td class="metric-value">$157.09</td>
+                        <td>27</td>
+                        <td>493</td>
+                        <td>$5.82</td>
+                        <td>5.48%</td>
+                        <td class="change-positive">-7.68%</td>
+                    </tr>
+                    <tr>
+                        <td class="metric-name">Therapy Services | Charlotte</td>
+                        <td class="metric-value">$148.38</td>
+                        <td>73</td>
+                        <td>785</td>
+                        <td>$2.03</td>
+                        <td>9.30%</td>
+                        <td class="change-negative">+23.17%</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td class="metric-name">Search Total</td>
+                        <td class="metric-value">$487.82</td>
+                        <td>152</td>
+                        <td>2,329</td>
+                        <td>$3.21</td>
+                        <td>6.53%</td>
+                        <td class="change-negative">+7.84%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="table-section">
+            <div class="section-header">Account Summary &mdash; Week over Week</div>
+            <table class="data-table">
+                <thead>
+                    <tr><th>Metric</th><th>This Week</th><th>Previous Week</th><th>Change</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td class="metric-name">Total Ad Spend</td><td class="metric-value">$2,773.18</td><td>$2,958.21</td><td class="change-positive">-6.25% (savings)</td></tr>
+                    <tr><td class="metric-name">Impressions</td><td class="metric-value">26,105</td><td>27,658</td><td class="change-negative">-5.62%</td></tr>
+                    <tr><td class="metric-name">Clicks</td><td class="metric-value">3,650</td><td>4,025</td><td class="change-negative">-9.32%</td></tr>
+                    <tr><td class="metric-name">Click-Through Rate</td><td class="metric-value">13.98%</td><td>14.55%</td><td class="change-negative">-3.92%</td></tr>
+                    <tr><td class="metric-name">Average CPC</td><td class="metric-value">$0.76</td><td>$0.73</td><td class="change-negative">+3.38%</td></tr>
+                    <tr><td class="metric-name">Total Interactions</td><td class="metric-value">3,651</td><td>4,026</td><td class="change-negative">-9.31%</td></tr>
+                    <tr><td class="metric-name">Interaction Rate</td><td class="metric-value">13.99%</td><td>14.56%</td><td class="change-negative">-3.92%</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="insights-section">
+            <div class="section-header">Key Insights & Recommendations</div>
+            <div class="insight-card">
+                <div class="insight-header">
+                    <div class="insight-icon success">&#10003;</div>
+                    <div class="insight-title">General Psychiatry Campaign Delivering Strong Savings</div>
+                </div>
+                <p class="insight-text">
+                    The General Psychiatry &amp; Counseling PMax campaign&mdash;the largest by spend&mdash;reduced cost by <strong>18.3%</strong>
+                    this week while maintaining a stellar <strong>19.79% CTR</strong> and keeping CPC at just $0.53. This campaign continues
+                    to be the most efficient driver of qualified traffic in the account.
+                </p>
+            </div>
+            <div class="insight-card">
+                <div class="insight-header">
+                    <div class="insight-icon success">&#10003;</div>
+                    <div class="insight-title">Spravato Leads PMax Growing Reach</div>
+                </div>
+                <p class="insight-text">
+                    Spravato Leads PMax delivered a <strong>27.5% increase in impressions</strong> (2,083 vs 1,634) and
+                    <strong>20.3% more clicks</strong> (308 vs 256) while keeping spend essentially flat (-1.15%). CPC improved
+                    significantly from $0.99 to <strong>$0.82</strong> (down 17.8%). This campaign is scaling efficiently.
+                </p>
+            </div>
+            <div class="insight-card">
+                <div class="insight-header">
+                    <div class="insight-icon success">&#10003;</div>
+                    <div class="insight-title">Therapy Services Charlotte Expanding Visibility</div>
+                </div>
+                <p class="insight-text">
+                    The Charlotte Therapy Services search campaign saw a <strong>37.7% surge in impressions</strong> (785 vs 570)
+                    and <strong>14% more clicks</strong> (73 vs 64). While spend increased 23.2%, this reflects growing demand capture
+                    in the Charlotte market at a competitive $2.03 CPC&mdash;the lowest among Search campaigns.
+                </p>
+            </div>
+            <div class="insight-card">
+                <div class="insight-header">
+                    <div class="insight-icon warning">!</div>
+                    <div class="insight-title">Click Volume Declined Across PMax Campaigns</div>
+                </div>
+                <p class="insight-text">
+                    Overall clicks dropped 9.3% week-over-week, primarily driven by the General Psychiatry campaign (-467 clicks, -17.9%).
+                    This coincides with the spend reduction and may reflect natural budget pacing. The NewADHD PMax campaign partially
+                    offset this with 11% more impressions and steady click growth (+5.2%).
+                </p>
+            </div>
+            <div class="insight-card">
+                <div class="insight-header">
+                    <div class="insight-icon info">&rarr;</div>
+                    <div class="insight-title">Recommendations</div>
+                </div>
+                <p class="insight-text">
+                    1) Monitor the General Psychiatry campaign&mdash;the 18.3% spend drop with 22% fewer impressions may indicate opportunity loss; consider reviewing budget allocation<br>
+                    2) Continue scaling Spravato Leads PMax&mdash;CPC is dropping while reach and clicks grow, indicating strong efficiency gains<br>
+                    3) Evaluate Spravato Search spend (+12.7%) alongside its modest CTR (4.95%)&mdash;consider testing new ad copy to improve click-through<br>
+                    4) Review policy-limited asset groups across all PMax campaigns to unlock additional impression share<br>
+                    5) The Morgantown &amp; Hickory Telehealth campaign at $0.42 CPC and 20.51% CTR remains the efficiency benchmark&mdash;consider applying its audience signals to other PMax campaigns
+                </p>
+            </div>
+        </section>
+
+        <footer class="report-footer">
+            <div class="footer-brand">Prepared by <a href="https://roberthebertmedia.com">Robert Hebert Media</a></div>
+            <div class="footer-meta">Report ID: RHM-PFB-2026-W10 | Page 1 of 1</div>
+        </footer>
+    </div>
+
+    <script>
+        const chartColors = {
+            primary: '#0066CC',
+            success: '#059669',
+            gray: '#9CA3AF'
+        };
+        new Chart(document.getElementById('spendClicksChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Total Spend ($)', 'Total Clicks', 'Total Interactions'],
+                datasets: [
+                    { label: 'This Week', data: [2773.18, 3650, 3651], backgroundColor: chartColors.primary, borderRadius: 4 },
+                    { label: 'Previous Week', data: [2958.21, 4025, 4026], backgroundColor: chartColors.gray, borderRadius: 4 }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { title: { display: true, text: 'Account Overview', font: { size: 14, weight: '600' }, color: '#1F2937' }, legend: { position: 'bottom' } },
+                scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
+            }
+        });
+        new Chart(document.getElementById('campaignChart'), {
+            type: 'bar',
+            data: {
+                labels: ['NewADHD', 'Gen Psych', 'Spravato PMax', 'Telehealth', 'ADHD Legacy', 'Spravato Srch', 'TMS', 'Therapy CLT'],
+                datasets: [
+                    { label: 'Clicks', data: [571, 2138, 308, 376, 105, 52, 27, 73], backgroundColor: chartColors.primary, borderRadius: 4 },
+                ]
+            },
+            options: {
+                responsive: true,
+                indexAxis: 'y',
+                plugins: { title: { display: true, text: 'Clicks by Campaign', font: { size: 14, weight: '600' }, color: '#1F2937' }, legend: { display: false } },
+                scales: { x: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, y: { grid: { display: false } } }
+            }
+        });
+    </script>
+</body>
+</html>
