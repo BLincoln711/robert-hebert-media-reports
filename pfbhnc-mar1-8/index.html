@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary: #0066CC;
@@ -94,7 +93,15 @@
         .footer-brand { font-size: 12px; color: var(--gray-500); }
         .footer-brand a { color: var(--primary); text-decoration: none; font-weight: 500; }
         .footer-meta { font-size: 11px; color: var(--gray-400); }
-        @media (max-width: 768px) { .report-container { padding: 20px; } .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } .kpi-value { font-size: 28px; } .header-top { flex-direction: column; gap: 8px; } .chart-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .report-container { padding: 20px; } .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } .kpi-value { font-size: 28px; } .header-top { flex-direction: column; gap: 8px; } }
+        @media print {
+            .kpi-section, .table-section, .insights-section { page-break-inside: avoid; }
+            .report-header { page-break-after: avoid; }
+            .executive-summary { page-break-after: avoid; }
+            .insight-card { page-break-inside: avoid; }
+            .data-table { page-break-inside: avoid; }
+            .report-footer { page-break-inside: avoid; }
+        }
     </style>
 </head>
 <body>
@@ -157,18 +164,6 @@
                     <div class="kpi-label">Total Interactions</div>
                     <div class="kpi-value">3,651</div>
                     <div class="kpi-change negative">-9.31% vs last week</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="chart-section">
-            <div class="section-header">Week-over-Week Comparison</div>
-            <div class="chart-grid">
-                <div class="chart-container">
-                    <canvas id="spendClicksChart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <canvas id="campaignChart"></canvas>
                 </div>
             </div>
         </section>
@@ -304,7 +299,7 @@
         </section>
 
         <section class="insights-section">
-            <div class="section-header">Key Insights & Recommendations</div>
+            <div class="section-header">Key Insights</div>
             <div class="insight-card">
                 <div class="insight-header">
                     <div class="insight-icon success">&#10003;</div>
@@ -349,19 +344,6 @@
                     offset this with 11% more impressions and steady click growth (+5.2%).
                 </p>
             </div>
-            <div class="insight-card">
-                <div class="insight-header">
-                    <div class="insight-icon info">&rarr;</div>
-                    <div class="insight-title">Recommendations</div>
-                </div>
-                <p class="insight-text">
-                    1) Monitor the General Psychiatry campaign&mdash;the 18.3% spend drop with 22% fewer impressions may indicate opportunity loss; consider reviewing budget allocation<br>
-                    2) Continue scaling Spravato Leads PMax&mdash;CPC is dropping while reach and clicks grow, indicating strong efficiency gains<br>
-                    3) Evaluate Spravato Search spend (+12.7%) alongside its modest CTR (4.95%)&mdash;consider testing new ad copy to improve click-through<br>
-                    4) Review policy-limited asset groups across all PMax campaigns to unlock additional impression share<br>
-                    5) The Morgantown &amp; Hickory Telehealth campaign at $0.42 CPC and 20.51% CTR remains the efficiency benchmark&mdash;consider applying its audience signals to other PMax campaigns
-                </p>
-            </div>
         </section>
 
         <footer class="report-footer">
@@ -370,42 +352,5 @@
         </footer>
     </div>
 
-    <script>
-        const chartColors = {
-            primary: '#0066CC',
-            success: '#059669',
-            gray: '#9CA3AF'
-        };
-        new Chart(document.getElementById('spendClicksChart'), {
-            type: 'bar',
-            data: {
-                labels: ['Total Spend ($)', 'Total Clicks', 'Total Interactions'],
-                datasets: [
-                    { label: 'This Week', data: [2773.18, 3650, 3651], backgroundColor: chartColors.primary, borderRadius: 4 },
-                    { label: 'Previous Week', data: [2958.21, 4025, 4026], backgroundColor: chartColors.gray, borderRadius: 4 }
-                ]
-            },
-            options: {
-                responsive: true,
-                plugins: { title: { display: true, text: 'Account Overview', font: { size: 14, weight: '600' }, color: '#1F2937' }, legend: { position: 'bottom' } },
-                scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } }
-            }
-        });
-        new Chart(document.getElementById('campaignChart'), {
-            type: 'bar',
-            data: {
-                labels: ['NewADHD', 'Gen Psych', 'Spravato PMax', 'Telehealth', 'ADHD Legacy', 'Spravato Srch', 'TMS', 'Therapy CLT'],
-                datasets: [
-                    { label: 'Clicks', data: [571, 2138, 308, 376, 105, 52, 27, 73], backgroundColor: chartColors.primary, borderRadius: 4 },
-                ]
-            },
-            options: {
-                responsive: true,
-                indexAxis: 'y',
-                plugins: { title: { display: true, text: 'Clicks by Campaign', font: { size: 14, weight: '600' }, color: '#1F2937' }, legend: { display: false } },
-                scales: { x: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, y: { grid: { display: false } } }
-            }
-        });
-    </script>
 </body>
 </html>
